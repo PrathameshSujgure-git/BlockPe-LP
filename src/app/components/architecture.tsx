@@ -3,22 +3,100 @@
 import { motion } from "motion/react";
 import { Smile, Cpu, Lock, GitPullRequest } from "lucide-react";
 
-const imgArchBg = "/assets/84469e5bf07ab0bf330d81373f7ec0d9daa93b0c.png";
+const imgArchBg = "/assets/arch-bg.png";
 import { SecondaryButton } from "./primary-button";
 
-function ArchLayer({ label, color, rows }: { label: string; color: string; rows: string[][] }) {
+/* ------------------------------------------------------------------ */
+/*  Layer data                                                         */
+/* ------------------------------------------------------------------ */
+
+interface LayerDef {
+  label: string;
+  color: string;
+  headerBg: string;
+  rows: string[][];
+  rowGap?: string; // override default gap-[8px] between rows
+}
+
+const layers: LayerDef[] = [
+  {
+    label: "User interface",
+    color: "#F6F3EA",
+    headerBg: "rgba(255,255,255,0.1)",
+    rows: [["0xGasless API", "Custom Applications"]],
+  },
+  {
+    label: "AI intelligence",
+    color: "#CCFFE9",
+    headerBg: "rgba(204,255,233,0.1)",
+    rows: [["Function", "Chaining", "Execution"]],
+  },
+  {
+    label: "Deployment",
+    color: "#99FFD4",
+    headerBg: "rgba(153,255,212,0.1)",
+    rows: [
+      ["Agent Host\n(Cloud Service)", "DevKit\n(CLI Tools)", "Mailbox\n(Message Queue)"],
+      ["PayMaster\n(Gasless) Tx Servie", "NameRegistry\n(AgentDs)"],
+    ],
+  },
+  {
+    label: "Agent sdk",
+    color: "#66FFBE",
+    headerBg: "rgba(102,255,190,0.1)",
+    rows: [
+      ["Library Fn.", "Capabilities", "Protocols", "Asynchronous", "Blockchain Tx"],
+      ["Storage", "Dialogs", "Security", "Logic", "Signatures"],
+    ],
+    rowGap: "gap-[6px]",
+  },
+  {
+    label: "Agent network",
+    color: "#33FFA9",
+    headerBg: "rgba(51,255,169,0.1)",
+    rows: [["Agent Index\n(Endpoint Discovery)", "Name Service\n(Human-readable Addressing)"]],
+  },
+  {
+    label: "Core Foundation",
+    color: "#00FF93",
+    headerBg: "rgba(0,255,147,0.1)",
+    rows: [
+      [
+        "Account Abstraction\n(ERC-4337)",
+        "Smart Account\nInfrastructure",
+        "Transaction\nBundling",
+        "Mainchain\nSupport",
+      ],
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  ArchLayer                                                          */
+/* ------------------------------------------------------------------ */
+
+function ArchLayer({ label, color, headerBg, rows, rowGap = "gap-[8px]" }: LayerDef) {
   return (
     <div className="flex flex-col items-start shadow-[0px_4px_8px_0px_rgba(0,0,0,0.2)] w-full">
-      {/* Header row with triangle + label */}
+      {/* Header row: triangle column + label bar */}
       <div className="flex items-stretch w-full">
-        <div className="flex items-start flex-shrink-0">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M0 12H12V0L0 12Z" fill={color} />
+        {/* Triangle + vertical bar column */}
+        <div className="flex flex-col items-start flex-shrink-0 w-[12px]">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="block shrink-0">
+            {/* White fold triangle (visible) */}
+            <path d="M0 12H12V0L0 12Z" fill="#f6f3ea" />
+            {/* Layer color triangle (0% opacity – cutout feeling) */}
+            <path d="M0 0L12 0L0 12Z" fill={color} fillOpacity={0} />
           </svg>
+          <div
+            className="flex-1 w-full border-l border-[rgba(255,255,255,0.1)] backdrop-blur-[22px]"
+            style={{ backgroundColor: headerBg }}
+          />
         </div>
+        {/* Label bar */}
         <div
-          className="flex-1 border-t border-r border-[rgba(255,255,255,0.1)] px-3 py-1"
-          style={{ backgroundColor: `${color}15` }}
+          className="flex-1 border-t border-r border-[rgba(255,255,255,0.1)] backdrop-blur-[22px] px-[12px] py-[4px]"
+          style={{ backgroundColor: headerBg }}
         >
           <span className="font-['DM_Mono',monospace] font-medium text-[#f6f3ea] text-[12px] uppercase leading-[1.5]">
             {label}
@@ -26,19 +104,19 @@ function ArchLayer({ label, color, rows }: { label: string; color: string; rows:
         </div>
       </div>
       {/* Content rows */}
-      <div className="border-b border-l border-r border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] w-full">
-        <div className="flex flex-col gap-2 p-3 pt-2">
+      <div className="border-b border-l border-r border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.1)] backdrop-blur-[22px] w-full pb-[8px] px-[12px]">
+        <div className={`flex flex-col ${rowGap} pt-[8px]`}>
           {rows.map((row, ri) => (
-            <div key={ri} className="flex gap-2 w-full">
+            <div key={ri} className="flex gap-[8px] w-full">
               {row.map((item, ci) => (
                 <div
                   key={ci}
-                  className="flex-1 min-h-[56px] bg-[#f6f3ea] border border-[rgba(0,116,67,0.6)] flex flex-col items-center justify-center px-2 md:px-4 py-2"
+                  className="flex-1 h-[56px] bg-[#f6f3ea] border border-[rgba(0,116,67,0.6)] flex flex-col items-center justify-center px-[16px] py-[8px]"
                 >
                   {item.split("\n").map((line, li) => (
                     <span
                       key={li}
-                      className="font-['DM_Mono',monospace] text-[#0a0b0d] text-[10px] md:text-[12px] leading-[1.5] whitespace-nowrap text-center"
+                      className="font-['DM_Mono',monospace] font-normal text-[#0a0b0d] text-[12px] leading-[1.5] whitespace-nowrap text-center"
                     >
                       {line}
                     </span>
@@ -52,6 +130,10 @@ function ArchLayer({ label, color, rows }: { label: string; color: string; rows:
     </div>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/*  FeatureBox                                                         */
+/* ------------------------------------------------------------------ */
 
 function FeatureBox({
   icon: Icon,
@@ -68,16 +150,18 @@ function FeatureBox({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-8"
+      className="flex flex-col gap-[32px] w-full lg:w-[264px]"
     >
-      <div className="relative p-2 border-[0.5px] border-white inline-flex gap-2 items-center self-start">
+      {/* Icon container */}
+      <div className="relative border-[0.5px] border-white p-[8px] inline-flex self-start">
         <div className="absolute -left-[5px] -top-[5px] w-[9px] h-[9px] border-[0.5px] border-white" />
         <div className="absolute -left-[5px] -bottom-[5px] w-[9px] h-[9px] border-[0.5px] border-white" />
         <div className="absolute -right-[5px] -top-[5px] w-[9px] h-[9px] border-[0.5px] border-white" />
         <div className="absolute -right-[5px] -bottom-[5px] w-[9px] h-[9px] border-[0.5px] border-white" />
         <Icon size={24} className="text-[#00FF93]" strokeWidth={2} />
       </div>
-      <div className="flex flex-col gap-4">
+      {/* Text block */}
+      <div className="flex flex-col gap-[16px]">
         <h4 className="font-['PP_Mori',sans-serif] font-semibold text-[24px] text-[#f6f3ea] tracking-[-0.48px] leading-[1.25]">
           {title}
         </h4>
@@ -89,104 +173,121 @@ function FeatureBox({
   );
 }
 
+/* ------------------------------------------------------------------ */
+/*  Feature data                                                       */
+/* ------------------------------------------------------------------ */
+
 const featureBoxes = [
   {
     icon: Smile,
     title: "Zero Configuration Interactions",
-    description: "Preconfigured smart accounts, relayers, and paymasters handle execution automatically",
+    description:
+      "Preconfigured smart accounts, relayers, and paymasters handle execution automatically",
   },
   {
     icon: Cpu,
     title: "AI Native Framework Compatibility",
-    description: "Agents and models execute onchain actions without custom blockchain logic",
+    description:
+      "Agents and models execute onchain actions without custom blockchain logic",
   },
   {
     icon: Lock,
     title: "Performant & Secure by Default",
-    description: "Low overhead execution with strong security guarantees for all applications",
+    description:
+      "Low overhead execution with strong security guarantees for all applications",
   },
   {
     icon: GitPullRequest,
     title: "Extensible and Cross Chain Ready",
-    description: "Modular components support extensions and multi chain deployment",
+    description:
+      "Modular components support extensions and multi chain deployment",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Architecture Section                                               */
+/* ------------------------------------------------------------------ */
 
 export function Architecture() {
   return (
     <section className="relative w-full py-[120px]">
-      {/* Background image */}
-      <div className="absolute top-[-100px] left-0 right-0 h-[807px] overflow-hidden pointer-events-none opacity-30">
-        <img src={imgArchBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute bottom-0 left-0 right-0 h-[313px] bg-gradient-to-b from-transparent to-[#0a0b0d]" />
-        <div className="absolute top-0 left-0 right-0 h-[180px] bg-gradient-to-b from-[#0a0b0d] to-transparent" />
+      {/* Background image with dark tint */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[-40px] h-[807px] w-full max-w-[1200px] pointer-events-none overflow-hidden">
+        <img src={imgArchBg} alt="" className="absolute h-[125.69%] left-[-14.04%] top-[-9.77%] w-[114.04%] max-w-none" />
+        {/* 30% dark tint overlay */}
+        <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
+      </div>
+
+      {/* Top gradient mask — aligned with top of bg image, dark at top fades to transparent */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-[-40px] w-[1200px] h-[313px] -scale-y-100 pointer-events-none z-[1]"
+        style={{ background: "linear-gradient(to bottom, rgba(10,11,13,0) 0%, #0a0b0d 71.605%)" }}
+      />
+
+      {/* Bottom gradient mask — aligned with bottom of bg image, transparent fades to dark */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-[587px] w-[1200px] h-[180px] pointer-events-none z-[1]"
+        style={{ background: "linear-gradient(to bottom, rgba(10,11,13,0) 0%, #0a0b0d 71.605%)" }}
+      />
+
+      {/* Decorative rectangle overlay on bg image */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[329px] w-full max-w-[1200px] pointer-events-none hidden lg:block">
+        <div className="absolute left-[59px] w-[250px] h-[274px]">
+          <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
+          <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
+          <div className="absolute inset-0 border border-white mix-blend-soft-light" />
+          <div className="absolute -left-[4px] -top-[4px] w-[7px] h-[7px] border border-white" />
+          <div className="absolute -left-[4px] -bottom-[4px] w-[7px] h-[7px] border border-white" />
+          <div className="absolute -right-[4px] -top-[4px] w-[7px] h-[7px] border border-white" />
+          <div className="absolute -right-[4px] -bottom-[4px] w-[7px] h-[7px] border border-white" />
+        </div>
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative z-10">
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col gap-6 items-start mb-10"
-        >
-          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25] max-w-[661px]">
-            Architecture Behind Gasless Onchain Execution
-          </h2>
-          <SecondaryButton>READ DEVELOPER DOCS</SecondaryButton>
-        </motion.div>
+        {/* Inner container offset 62px from left within the 1200px */}
+        <div className="w-full lg:w-[1076px] lg:ml-[62px]">
+          {/* ---- Title area ---- */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col gap-6 items-start max-w-[661px]"
+          >
+            <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25]">
+              Architecture Behind Gasless Onchain Execution
+            </h2>
+            <SecondaryButton>READ DEVELOPER DOCS</SecondaryButton>
+          </motion.div>
 
-        {/* Architecture Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full lg:max-w-[701px] lg:ml-auto flex flex-col gap-4 backdrop-blur-[22px] overflow-x-auto mb-[94px]"
-        >
-          <ArchLayer label="User interface" color="#F6F3EA" rows={[["0xGasless API", "Custom Applications"]]} />
-          <ArchLayer label="AI intelligence" color="#CCFFE9" rows={[["Function", "Chaining", "Execution"]]} />
-          <ArchLayer
-            label="Deployment"
-            color="#99FFD4"
-            rows={[
-              ["Agent Host\n(Cloud Service)", "DevKit\n(CLI Tools)", "Mailbox\n(Message Queue)"],
-              ["PayMaster\n(Gasless) Tx Service", "NameRegistry\n(AgentDs)"],
-            ]}
-          />
-          <ArchLayer
-            label="Agent sdk"
-            color="#66FFBE"
-            rows={[
-              ["Library Fn.", "Capabilities", "Protocols", "Asynchronous", "Blockchain Tx"],
-              ["Storage", "Dialogs", "Security", "Logic", "Signatures"],
-            ]}
-          />
-          <ArchLayer
-            label="agent network"
-            color="#33FFA9"
-            rows={[["Agent Index\n(Endpoint Discovery)", "Name Service\n(Human-readable Addressing)"]]}
-          />
-          <ArchLayer
-            label="Core Foundation"
-            color="#00FF93"
-            rows={[
-              [
-                "Account Abstraction\n(ERC-4337)",
-                "Smart Account\nInfrastructure",
-                "Transaction\nBundling",
-                "Mainchain\nSupport",
-              ],
-            ]}
-          />
-        </motion.div>
+          {/* ---- Content area ---- */}
+          <div className="flex flex-col gap-[94px] mt-[80px]">
+            {/* Row 1: first feature box (left) + architecture table (right) */}
+            <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[111px] lg:items-end">
+              {/* First feature box */}
+              <FeatureBox {...featureBoxes[0]} />
 
-        {/* Feature boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-[80px]">
-          {featureBoxes.map((box, i) => (
-            <FeatureBox key={i} {...box} />
-          ))}
+              {/* Architecture table */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="w-full lg:w-[701px] flex-shrink-0 flex flex-col gap-[24px] overflow-x-auto"
+              >
+                {layers.map((layer, i) => (
+                  <ArchLayer key={i} {...layer} />
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Row 2: remaining 3 feature boxes */}
+            <div className="flex flex-col md:flex-row gap-[40px] lg:gap-[128px] lg:items-center">
+              {featureBoxes.slice(1).map((box, i) => (
+                <FeatureBox key={i} {...box} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
