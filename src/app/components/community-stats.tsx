@@ -61,7 +61,7 @@ function DecorativeCardOverlay() {
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[197px] h-[208px]">
       <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
       <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 border border-white" />
+      <div className="absolute inset-0 border border-white mix-blend-soft-light" />
       <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
       <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
       <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
@@ -94,9 +94,9 @@ export function CommunityStats() {
         </motion.div>
 
         {/* Stats + Illustration */}
-        <div className="relative w-full max-w-[1120px] min-h-[400px] md:min-h-[500px]">
+        <div className="relative w-full max-w-[1120px] h-[384px] hidden lg:block">
           {/* Center illustration */}
-          <div className="relative mx-auto w-[300px] md:w-[499px] h-[250px] md:h-[384px] z-0">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[499px] h-[384px] z-0">
             <div
               className="absolute inset-0"
               style={{
@@ -115,21 +115,27 @@ export function CommunityStats() {
             <DecorativeCardOverlay />
           </div>
 
-          {/* Stats positioned around on all screen sizes */}
-          <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:absolute lg:inset-0 z-10">
-            <div className="lg:absolute lg:left-[60px] lg:top-[20px]">
-              <AnimatedCountStat value="100+" label="Agents deployed" delay={0} />
-            </div>
-            <div className="lg:absolute lg:right-[30px] lg:top-[20px]">
-              <AnimatedCountStat value=">25k" label="Agent Interaction" delay={0.1} />
-            </div>
-            <div className="lg:absolute lg:left-[10px] lg:bottom-[20px]">
-              <AnimatedCountStat value="3.5m+" label="Total value" delay={0.2} />
-            </div>
-            <div className="lg:absolute lg:right-[0px] lg:bottom-[20px]">
-              <AnimatedCountStat value=">10k" label="transactions processed" delay={0.3} />
-            </div>
+          {/* Stats at exact Figma positions */}
+          <div className="absolute left-[212px] top-[16px] z-10">
+            <AnimatedCountStat value="100+" label="Agents deployed" delay={0} />
           </div>
+          <div className="absolute left-[724px] top-[0px] z-10">
+            <AnimatedCountStat value=">25k" label="Agent Interaction" delay={0.1} />
+          </div>
+          <div className="absolute left-[84px] top-[208px] z-10">
+            <AnimatedCountStat value="3.5m+" label="Total value" delay={0.2} />
+          </div>
+          <div className="absolute left-[862px] top-[208px] z-10">
+            <AnimatedCountStat value=">10k" label="transactions processed" delay={0.3} />
+          </div>
+        </div>
+
+        {/* Mobile fallback: grid layout */}
+        <div className="lg:hidden grid grid-cols-2 gap-8">
+          <AnimatedCountStat value="100+" label="Agents deployed" delay={0} />
+          <AnimatedCountStat value=">25k" label="Agent Interaction" delay={0.1} />
+          <AnimatedCountStat value="3.5m+" label="Total value" delay={0.2} />
+          <AnimatedCountStat value=">10k" label="transactions processed" delay={0.3} />
         </div>
       </div>
     </section>
