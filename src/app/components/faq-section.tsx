@@ -1,8 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Plus, Minus } from "lucide-react";
+
+// ── Web Audio API: soft pop sound (matches Ally project) ──
+let sharedAudioCtx: AudioContext | null = null;
+
+function getAudioCtx(): AudioContext | null {
+  if (typeof window === "undefined") return null;
+  try {
+    if (!sharedAudioCtx) {
+      sharedAudioCtx = new (window.AudioContext ||
+        (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+    }
+    if (sharedAudioCtx.state === "suspended") {
+      void sharedAudioCtx.resume().catch(() => {});
+    }
+    return sharedAudioCtx;
+  } catch {
+    return null;
+  }
+}
+
+function useAccordionSound() {
+  const playToggle = useCallback(() => {
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+    try {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      // Soft pop: 400Hz → 200Hz sweep, very short
+      osc.frequency.setValueAtTime(400, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.08);
+
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.1);
+    } catch {
+      // Silently fail if audio doesn't work
+    }
+  }, []);
+
+  return { playToggle };
+}
 
 const faqData = [
   {
@@ -57,40 +102,73 @@ const faqData = [
   },
 ];
 
+function MorphIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <div className="border-[0.833px] border-[rgba(246,243,234,0.35)] backdrop-blur-[1.667px] shadow-[0px_3.333px_6.667px_0px_rgba(0,0,0,0.16)] p-[2.5px] flex items-center justify-center shrink-0">
+      <motion.svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        animate={{ rotate: isOpen ? 180 : 0 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        {/* Horizontal line (always visible) */}
+        <line
+          x1="4" y1="10" x2="16" y2="10"
+          stroke="#f6f3ea"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        {/* Vertical line (fades out to become minus) */}
+        <motion.line
+          x1="10" y1="4" x2="10" y2="16"
+          animate={{ opacity: isOpen ? 0 : 1 }}
+          transition={{ duration: 0.15, ease: "easeInOut" }}
+          stroke="#f6f3ea"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </motion.svg>
+    </div>
+  );
+}
+
+// Deceleration curve matching Ally's accordion (ease-out-quart feel)
+const ACCORDION_EASE = [0.165, 0.84, 0.44, 1] as const;
+
 function FAQItem({
   question,
   answer,
   isOpen,
   onClick,
+  isFirst,
+  playToggle,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onClick: () => void;
+  isFirst: boolean;
+  playToggle: () => void;
 }) {
+
   return (
-    <div className="border-b border-[rgba(246,243,234,0.1)]">
+    <div className={`border-b border-[#232325] ${isFirst ? "border-t" : ""}`}>
       <button
-        className="flex items-start gap-6 w-full py-5 text-left cursor-pointer group"
-        onClick={onClick}
+        className="flex gap-[24px] items-start w-full py-[24px] text-left cursor-pointer"
+        onClick={() => {
+          playToggle();
+          onClick();
+        }}
         aria-expanded={isOpen}
       >
-        <div className="w-[25px] h-[25px] flex-shrink-0 flex items-center justify-center mt-0.5">
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {isOpen ? (
-              <Minus size={20} className="text-[#00dd7f]" />
-            ) : (
-              <Plus size={20} className="text-[#f6f3ea]" />
-            )}
-          </motion.div>
+        <div className="mt-[3px]">
+          <MorphIcon isOpen={isOpen} />
         </div>
         <span
-          className={`font-['DM_Sans',sans-serif] font-semibold text-[16px] leading-[1.5] transition-colors ${
-            isOpen ? "text-[#00dd7f]" : "text-[#f6f3ea] group-hover:text-[#00dd7f]"
-          }`}
+          className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#f6f3ea] leading-[1.5] pt-[3px]"
+          style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
         >
           {question}
         </span>
@@ -101,11 +179,17 @@ function FAQItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{
+              height: { duration: 0.35, ease: ACCORDION_EASE },
+              opacity: { duration: 0.25, ease: "easeOut" },
+            }}
             className="overflow-hidden"
           >
-            <div className="pl-[49px] pb-5">
-              <p className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] max-w-[551px]">
+            <div className="pl-[49px] pb-[24px]">
+              <p
+                className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] leading-[1.5]"
+                style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
+              >
                 {answer}
               </p>
             </div>
@@ -118,44 +202,52 @@ function FAQItem({
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { playToggle } = useAccordionSound();
 
   return (
     <section className="py-[120px]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col lg:flex-row gap-16">
-        {/* Left */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:w-[400px] flex-shrink-0"
-        >
-          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25]">
-            FAQs
-          </h2>
-          <p className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] mt-4">
-            Have anything else reach out on our community channels
-          </p>
-        </motion.div>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-[52px]">
+        <div className="flex flex-col lg:flex-row items-start justify-between">
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col gap-[16px] shrink-0 mb-10 lg:mb-0"
+          >
+            <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25]">
+              FAQs
+            </h2>
+            <p
+              className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] leading-[1.5] w-[312px]"
+              style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
+            >
+              Have anything else reach out on our community channels
+            </p>
+          </motion.div>
 
-        {/* Right - Accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex-1"
-        >
-          {faqData.map((faq, i) => (
-            <FAQItem
-              key={i}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === i}
-              onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            />
-          ))}
-        </motion.div>
+          {/* Right - Accordion */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full lg:w-[600px] overflow-clip"
+          >
+            {faqData.map((faq, i) => (
+              <FAQItem
+                key={i}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === i}
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                isFirst={i === 0}
+                playToggle={playToggle}
+              />
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
