@@ -2,24 +2,15 @@
 
 import { motion } from "motion/react";
 import { PrimaryButton, SecondaryButton } from "./primary-button";
-import { imgMemeticdesignteamHttpssMjRunHgaw9HqGnWcFillItWithConsistF8Ff68916Db04D4BB007A28B1F862Dbe1 } from "../../imports/svg-9n1mo";
 
-const imgFooterBg = "/assets/84469e5bf07ab0bf330d81373f7ec0d9daa93b0c.png";
-import svgPaths from "../../imports/svg-o51ewolwat";
-
-function GaslessWordmark() {
+function BlockPeWordmark() {
   return (
-    <div className="w-full max-w-[1200px] h-[100px] md:h-[161px] opacity-20">
-      <svg className="w-full h-full" viewBox="0 0 1208 177" fill="none" preserveAspectRatio="xMidYMid meet">
-        <path d={svgPaths.p37aa180} fill="#F5F5F5" />
-        <path d={svgPaths.p21473c30} fill="#F5F5F5" />
-        <path d={svgPaths.p38b84300} fill="#F5F5F5" />
-        <path d={svgPaths.p1fdcdc00} fill="#F5F5F5" />
-        <path d={svgPaths.p61f7680} fill="#F5F5F5" />
-        <path d={svgPaths.p229b6700} fill="#F5F5F5" />
-        <path d={svgPaths.p2a167380} fill="#F5F5F5" />
-        <path d={svgPaths.p50fc500} fill="#F5F5F5" />
-      </svg>
+    <div className="w-[1202px] h-[241px]">
+      <img
+        src="/assets/blockpe-wordmark.svg"
+        alt=""
+        className="w-full h-full"
+      />
     </div>
   );
 }
@@ -27,66 +18,86 @@ function GaslessWordmark() {
 export function FooterCTA() {
   return (
     <footer className="relative overflow-hidden">
-      {/* Background */}
+      {/* Background: masked grassland image */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0"
           style={{
-            maskImage: `url('${imgMemeticdesignteamHttpssMjRunHgaw9HqGnWcFillItWithConsistF8Ff68916Db04D4BB007A28B1F862Dbe1}')`,
+            maskImage: "url('/assets/footer-mask.svg')",
             maskSize: "cover",
             maskPosition: "center bottom",
             maskRepeat: "no-repeat",
-            WebkitMaskImage: `url('${imgMemeticdesignteamHttpssMjRunHgaw9HqGnWcFillItWithConsistF8Ff68916Db04D4BB007A28B1F862Dbe1}')`,
+            WebkitMaskImage: "url('/assets/footer-mask.svg')",
             WebkitMaskSize: "cover",
             WebkitMaskPosition: "center bottom",
             WebkitMaskRepeat: "no-repeat",
           }}
         >
-          <img src={imgFooterBg} alt="" className="w-full h-full object-cover" />
+          <img
+            src="/assets/footer-grassland.png"
+            alt=""
+            className="w-full h-full object-cover"
+          />
         </div>
+
+        {/* Gradient overlay: top — fades sky into dark */}
+        <div
+          className="absolute inset-x-0 top-0 h-[40%]"
+          style={{
+            background:
+              "linear-gradient(to bottom, #0a0b0d 0%, rgba(10,11,13,0.8) 40%, transparent 100%)",
+          }}
+        />
+
+        {/* Gradient overlay: bottom — fades grass into dark */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[35%]"
+          style={{
+            background:
+              "linear-gradient(to top, #0a0b0d 0%, rgba(10,11,13,0.7) 40%, transparent 100%)",
+          }}
+        />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative z-10 pt-[120px] pb-8">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative flex flex-col items-center gap-[240px] pt-[120px] pb-[24px]">
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center gap-8 text-center mb-[120px]"
+          className="flex flex-col items-center gap-[32px] w-[845px] max-w-full"
         >
-          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25] max-w-[845px]">
+          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.1] text-center w-full">
             Build Financial Systems for Autonomous Intelligence
           </h2>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex gap-[16px]">
             <PrimaryButton>Get Started →</PrimaryButton>
             <SecondaryButton>DEVELOPER DOCS</SecondaryButton>
           </div>
         </motion.div>
 
-        {/* Wordmark */}
-        <div className="flex justify-center mb-12">
-          <GaslessWordmark />
-        </div>
-
-        {/* Copyright & links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-[rgba(246,243,234,0.1)]">
-          <p className="font-['DM_Sans',sans-serif] font-normal text-[14px] text-[#9b9994] leading-[1.5]">
-            &copy; 2026 0xGasless, All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="font-['DM_Sans',sans-serif] font-normal text-[14px] text-[#9b9994] hover:text-[#f6f3ea] transition-colors leading-[1.5]"
-            >
-              Privacy policy
-            </a>
-            <a
-              href="#"
-              className="font-['DM_Sans',sans-serif] font-normal text-[14px] text-[#9b9994] hover:text-[#f6f3ea] transition-colors leading-[1.5]"
-            >
-              Terms of service
-            </a>
+        {/* Bottom: Wordmark + Footer bar */}
+        <div className="flex flex-col gap-[24px] items-start w-full">
+          <BlockPeWordmark />
+          <div className="flex items-center justify-between w-full">
+            <p className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] leading-[1.5]">
+              &copy; 2026 0xGasless, All rights reserved.
+            </p>
+            <div className="flex gap-[24px] items-center">
+              <a
+                href="#"
+                className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] hover:text-[#f6f3ea] transition-colors leading-[1.5]"
+              >
+                Privacy policy
+              </a>
+              <a
+                href="#"
+                className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] hover:text-[#f6f3ea] transition-colors leading-[1.5]"
+              >
+                Terms of service
+              </a>
+            </div>
           </div>
         </div>
       </div>

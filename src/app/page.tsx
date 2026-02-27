@@ -14,7 +14,12 @@ export default function Home() {
   return (
     <div className="bg-[#0a0b0d] min-h-screen text-[#f6f3ea] overflow-x-hidden font-['DM_Sans',sans-serif]">
       <Navbar />
-      <main className="pt-[72px]">
+      {/* Left/right border lines on 1200px container — full viewport height */}
+      <div className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-full z-40">
+        <div className="absolute left-0 top-0 w-px h-full bg-[rgba(246,243,234,0.1)]" />
+        <div className="absolute right-0 top-0 w-px h-full bg-[rgba(246,243,234,0.1)]" />
+      </div>
+      <main>
         <Hero />
         <StatsBar />
         <FeatureCards />
