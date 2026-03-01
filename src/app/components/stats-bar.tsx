@@ -128,7 +128,7 @@ const logos = [SonicLogo, AvalancheLogo, LogoSvgBrand, BnbChainLogo];
 
 export function StatsBar() {
   return (
-    <section className="w-full max-w-[1200px] mx-auto">
+    <section className="w-full max-w-[1200px] mx-auto select-none">
       <div className="flex flex-col lg:flex-row items-stretch">
         {/* Stats */}
         <div className="flex flex-col md:flex-row items-stretch">

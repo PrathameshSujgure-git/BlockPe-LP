@@ -18,7 +18,7 @@ export function Hero() {
       <div className="relative max-w-[1200px] mx-auto h-full">
         {/* Floating text — right side */}
         <div
-          className="absolute right-[8px] top-[200px] w-[274px] text-white leading-[1.5] hidden lg:block"
+          className="absolute right-[8px] top-[200px] w-[274px] text-white leading-[1.5] hidden lg:block select-none"
           style={{ textShadow: "0px 2px 16px rgba(0,0,0,0.3)" }}
         >
           <p className="font-['DM_Sans',sans-serif] font-semibold text-[16px] mb-0">We&apos;re building x402 —</p>
