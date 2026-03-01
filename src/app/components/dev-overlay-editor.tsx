@@ -10,8 +10,41 @@ import {
   type CSSProperties,
 } from "react";
 
+// ---------------------------------------------------------------------------
+// Shared keyboard listener (Ctrl+Shift+D) — single global handler
+// ---------------------------------------------------------------------------
+const activeListeners = new Set<() => void>();
+let globalKeyListenerAttached = false;
+
+function handleGlobalKey(e: KeyboardEvent) {
+  if (e.ctrlKey && e.shiftKey && e.key === "D") {
+    e.preventDefault();
+    for (const cb of activeListeners) cb();
+  }
+}
+
+function subscribeToggle(cb: () => void) {
+  activeListeners.add(cb);
+  if (!globalKeyListenerAttached) {
+    window.addEventListener("keydown", handleGlobalKey);
+    globalKeyListenerAttached = true;
+  }
+  return () => {
+    activeListeners.delete(cb);
+    if (activeListeners.size === 0) {
+      window.removeEventListener("keydown", handleGlobalKey);
+      globalKeyListenerAttached = false;
+    }
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 interface DevOverlayEditorProps {
   id: string;
+  /** "px" (default) — absolute pixel values. "percent" — percentage of parent. */
+  mode?: "px" | "percent";
   initialX?: number;
   initialY?: number;
   initialW?: number;
@@ -19,6 +52,9 @@ interface DevOverlayEditorProps {
   children: ReactNode;
 }
 
+// ---------------------------------------------------------------------------
+// Public component — tree-shaken in production
+// ---------------------------------------------------------------------------
 export function DevOverlayEditor(props: DevOverlayEditorProps) {
   if (process.env.NODE_ENV !== "development") {
     return <>{props.children}</>;
@@ -26,8 +62,12 @@ export function DevOverlayEditor(props: DevOverlayEditorProps) {
   return <DevOverlayEditorInner {...props} />;
 }
 
+// ---------------------------------------------------------------------------
+// Internal editor (dev only)
+// ---------------------------------------------------------------------------
 function DevOverlayEditorInner({
   id,
+  mode = "px",
   initialX,
   initialY,
   initialW,
@@ -35,6 +75,7 @@ function DevOverlayEditorInner({
   children,
 }: DevOverlayEditorProps) {
   const measuredRef = useRef<HTMLElement | null>(null);
+  const parentRef = useRef<HTMLElement | null>(null);
   const hasInitials =
     initialX != null && initialY != null && initialW != null && initialH != null;
   const [active, setActive] = useState(false);
@@ -52,25 +93,20 @@ function DevOverlayEditorInner({
     origin: { x: number; y: number; w: number; h: number };
   } | null>(null);
 
-  // Toggle editor with Ctrl+Shift+D
+  // Toggle editor with Ctrl+Shift+D — shared global listener
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key === "D") {
-        e.preventDefault();
-        setActive((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return subscribeToggle(() => setActive((prev) => !prev));
   }, []);
 
-  // Measure the child element's position via a MutationObserver-free approach:
-  // a data attribute is placed on a marker span, then we find the next sibling.
+  // Measure the child element's position via a marker span → next sibling.
   const markerRef = useCallback(
     (node: HTMLSpanElement | null) => {
       if (node) {
         const sibling = node.nextElementSibling as HTMLElement | null;
-        if (sibling) measuredRef.current = sibling;
+        if (sibling) {
+          measuredRef.current = sibling;
+          parentRef.current = sibling.offsetParent as HTMLElement | null;
+        }
       }
     },
     [],
@@ -80,6 +116,7 @@ function DevOverlayEditorInner({
   useEffect(() => {
     if (active && !pos && measuredRef.current) {
       const el = measuredRef.current;
+      parentRef.current = el.offsetParent as HTMLElement | null;
       setPos({
         x: el.offsetLeft,
         y: el.offsetTop,
@@ -126,8 +163,23 @@ function DevOverlayEditorInner({
     };
   }, [drag]);
 
-  // Inactive: render children directly (no wrapper div) to preserve mix-blend-mode.
-  // A hidden marker span is used for DOM measurement when activating.
+  // ---------------------------------------------------------------------------
+  // Helpers: percentage conversions
+  // ---------------------------------------------------------------------------
+  function getParentSize(): { pw: number; ph: number } {
+    if (parentRef.current) {
+      return { pw: parentRef.current.clientWidth, ph: parentRef.current.clientHeight };
+    }
+    return { pw: 1, ph: 1 }; // fallback to avoid division by zero
+  }
+
+  function pct(value: number, base: number, decimals = 1): string {
+    return ((value / base) * 100).toFixed(decimals);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Inactive: render children directly (no wrapper) to preserve mix-blend-mode.
+  // ---------------------------------------------------------------------------
   if (!active || !pos) {
     return (
       <>
@@ -157,6 +209,32 @@ function DevOverlayEditorInner({
     border: "1px solid rgba(0,0,40,0.5)",
     zIndex: 10000,
   };
+
+  // Pixel values (always computed)
+  const px = Math.round(pos.x);
+  const py = Math.round(pos.y);
+  const pw = Math.round(pos.w);
+  const ph = Math.round(pos.h);
+
+  // Percentage values (always computed for label)
+  const parent = getParentSize();
+  const pctL = pct(pos.x, parent.pw);
+  const pctT = pct(pos.y, parent.ph);
+  const pctW = pct(pos.w, parent.pw);
+  const pctH = pct(pos.h, parent.ph);
+
+  // Label text
+  const pxLabel = `left-[${px}px] top-[${py}px] w-[${pw}px] h-[${ph}px]`;
+  const pctLabel = `${pctL}% / ${pctT}% / ${pctW}% / ${pctH}%`;
+  const label = `${id}: ${pxLabel} | ${pctLabel}`;
+
+  // Copy text depends on mode
+  function getCopyText(): string {
+    if (mode === "percent") {
+      return `left-[${pctL}%] top-[${pctT}%] w-[${pctW}%] h-[${pctH}%]`;
+    }
+    return `left-[${px}px] top-[${py}px] w-[${pw}px] h-[${ph}px]`;
+  }
 
   return (
     <div
@@ -193,12 +271,7 @@ function DevOverlayEditorInner({
       <div
         onClick={(e) => {
           e.stopPropagation();
-          const x = Math.round(pos.x);
-          const y = Math.round(pos.y);
-          const w = Math.round(pos.w);
-          const h = Math.round(pos.h);
-          const tw = `left-[${x}px] top-[${y}px] w-[${w}px] h-[${h}px]`;
-          navigator.clipboard.writeText(tw);
+          navigator.clipboard.writeText(getCopyText());
           setCopied(true);
           setTimeout(() => setCopied(false), 1500);
         }}
@@ -220,9 +293,7 @@ function DevOverlayEditorInner({
           transition: "color 0.15s",
         }}
       >
-        {copied
-          ? "Copied!"
-          : `${id}: left-[${Math.round(pos.x)}px] top-[${Math.round(pos.y)}px] w-[${Math.round(pos.w)}px] h-[${Math.round(pos.h)}px]`}
+        {copied ? "Copied!" : label}
       </div>
 
       {/* Corner resize handles */}
