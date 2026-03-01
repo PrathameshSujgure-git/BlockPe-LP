@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 
 const imgCommunity = "/assets/9206acdd69b7297ac5c787bfbff6a2e443577cda.png";
 import { imgGeminiGeneratedImageG51V4Gg51V4Gg51V1 } from "../../imports/svg-9n1mo";
@@ -112,7 +113,7 @@ export function CommunityStats() {
             >
               <img src={imgCommunity} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
-            <DecorativeCardOverlay />
+            <DevOverlayEditor id="community"><DecorativeCardOverlay /></DevOverlayEditor>
           </div>
 
           {/* Stats at exact Figma positions */}

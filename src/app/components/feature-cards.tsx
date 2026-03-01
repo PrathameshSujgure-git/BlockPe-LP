@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 
 const imgCard1 = "/assets/d51a3aec84994cf52a84b4575512d98e6fc943e1.png";
 const imgCard2 = "/assets/6e7eb94f0ba2b8ab9039490ce29e5e4f0941e726.png";
@@ -21,10 +22,10 @@ function DecorativeCardOverlay({ className = "" }: { className?: string }) {
       <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
       <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
       <div className="absolute inset-0 border border-white mix-blend-soft-light" />
-      <div className="absolute -left-[7px] -top-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -left-[7px] -bottom-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -right-[7px] -bottom-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -right-[7px] -top-[7px] w-[13px] h-[13px] border border-white" />
+      <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
     </div>
   );
 }
@@ -38,9 +39,11 @@ interface FeatureCardProps {
   reversed?: boolean;
   index: number;
   textGap?: string;
+  overlayClassName?: string;
+  overlayId: string;
 }
 
-function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false, index, textGap = "gap-[64px]" }: FeatureCardProps) {
+function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false, index, textGap = "gap-[64px]", overlayClassName = "left-[187px] top-[180px] w-[125px] h-[137px]", overlayId }: FeatureCardProps) {
   const imageSection = (
     <div className="w-full lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0 overflow-hidden">
       <div
@@ -59,7 +62,7 @@ function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false
         <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
       </div>
-      <DecorativeCardOverlay className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[142px] h-[182px]" />
+      <DevOverlayEditor id={overlayId}><DecorativeCardOverlay className={overlayClassName} /></DevOverlayEditor>
     </div>
   );
 
@@ -116,6 +119,7 @@ const features = [
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E0154521,
     reversed: false,
     textGap: "gap-[64px]",
+    overlayId: "feature-0",
   },
   {
     title: "AI agents autonomously perform onchain interaction",
@@ -129,6 +133,8 @@ const features = [
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154523,
     reversed: true,
     textGap: "gap-[64px]",
+    overlayClassName: "left-[130px] top-[204px] w-[220px] h-[190px]",
+    overlayId: "feature-1",
   },
   {
     title: "ERC-4337 account abstraction",
@@ -142,6 +148,8 @@ const features = [
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154525,
     reversed: false,
     textGap: "gap-[56px]",
+    overlayClassName: "left-[155px] top-[129px] w-[210px] h-[152px]",
+    overlayId: "feature-2",
   },
 ];
 

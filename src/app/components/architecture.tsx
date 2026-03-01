@@ -5,6 +5,7 @@ import { Smile, Cpu, Lock, GitPullRequest } from "lucide-react";
 
 const imgArchBg = "/assets/arch-bg.png";
 import { SecondaryButton } from "./primary-button";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 
 /* ------------------------------------------------------------------ */
 /*  Layer data                                                         */
@@ -231,16 +232,18 @@ export function Architecture() {
       />
 
       {/* Decorative rectangle overlay on bg image */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[329px] w-full max-w-[1200px] pointer-events-none hidden lg:block">
-        <div className="absolute left-[59px] w-[250px] h-[274px]">
-          <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
-          <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-          <div className="absolute inset-0 border border-white mix-blend-soft-light" />
-          <div className="absolute -left-[4px] -top-[4px] w-[7px] h-[7px] border border-white" />
-          <div className="absolute -left-[4px] -bottom-[4px] w-[7px] h-[7px] border border-white" />
-          <div className="absolute -right-[4px] -top-[4px] w-[7px] h-[7px] border border-white" />
-          <div className="absolute -right-[4px] -bottom-[4px] w-[7px] h-[7px] border border-white" />
-        </div>
+      <div className="absolute left-1/2 -translate-x-1/2 top-[371px] w-full max-w-[1200px] pointer-events-none hidden lg:block">
+        <DevOverlayEditor id="architecture">
+          <div className="absolute left-[62px] w-[125px] h-[137px]">
+            <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
+            <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
+            <div className="absolute inset-0 border border-white mix-blend-soft-light" />
+            <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+            <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+            <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+            <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+          </div>
+        </DevOverlayEditor>
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative z-10">
