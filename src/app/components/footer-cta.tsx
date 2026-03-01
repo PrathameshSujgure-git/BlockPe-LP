@@ -1,23 +1,27 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { PrimaryButton, SecondaryButton } from "./primary-button";
 
-function BlockPeWordmark() {
-  return (
-    <div className="w-[1202px] h-[241px]">
-      <img
-        src="/assets/blockpe-wordmark.svg"
-        alt=""
-        className="w-full h-full"
-      />
-    </div>
-  );
-}
-
 export function FooterCTA() {
+  const footerRef = useRef<HTMLElement>(null);
+  const [footerH, setFooterH] = useState(0);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setFooterH(entry.contentRect.height);
+    });
+    ro.observe(footerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <footer className="relative overflow-hidden">
+    <>
+      {/* Spacer pushes main content so footer reveals underneath */}
+      <div style={{ height: footerH }} />
+      <footer ref={footerRef} className="fixed bottom-0 left-0 right-0 h-screen overflow-hidden">
       {/* Background: masked grassland image */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -59,7 +63,7 @@ export function FooterCTA() {
         />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative flex flex-col items-center gap-[240px] pt-[120px] pb-[24px]">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative flex flex-col items-center pt-[120px] pb-[24px] h-full">
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -77,12 +81,33 @@ export function FooterCTA() {
           </div>
         </motion.div>
 
-        {/* Bottom: Wordmark + Footer bar */}
-        <div className="flex flex-col gap-[24px] items-start w-full">
-          <BlockPeWordmark />
+        {/* Bottom: Wordmark + Footer bar — pushed to bottom */}
+        <div className="mt-auto flex flex-col gap-[24px] items-start w-full">
+          <div className="relative">
+            {[
+              { blur: 0, mask: "linear-gradient(to bottom, black, transparent 35%)" },
+              { blur: 9, mask: "linear-gradient(to bottom, transparent 15%, black 35%, transparent 60%)" },
+              { blur: 18, mask: "linear-gradient(to bottom, transparent 40%, black 60%, transparent 85%)" },
+              { blur: 36, mask: "linear-gradient(to bottom, transparent 65%, black 85%)" },
+            ].map(({ blur, mask }, i) => (
+              <img
+                key={i}
+                src="/assets/blockpe-wordmark-blur.svg"
+                alt=""
+                className={`w-full h-auto ${i > 0 ? "absolute inset-0" : ""}`}
+                style={{
+                  opacity: 0.6,
+                  mixBlendMode: "overlay",
+                  filter: blur > 0 ? `blur(${blur}px)` : undefined,
+                  maskImage: mask,
+                  WebkitMaskImage: mask,
+                }}
+              />
+            ))}
+          </div>
           <div className="flex items-center justify-between w-full">
             <p className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] leading-[1.5]">
-              &copy; 2026 0xGasless, All rights reserved.
+              &copy; 2026 BlockPe, All rights reserved.
             </p>
             <div className="flex gap-[24px] items-center">
               <a
@@ -102,5 +127,6 @@ export function FooterCTA() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
