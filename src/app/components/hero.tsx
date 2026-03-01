@@ -2,18 +2,58 @@
 
 import { motion } from "motion/react";
 import { PrimaryButton, SecondaryButton } from "./primary-button";
-
-const imgHeroBg = "/assets/hero.webp";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* Background image */}
-      <img
-        src={imgHeroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      />
+    <section className="relative w-full h-screen overflow-hidden bg-[#0a0b0d]">
+      {/* Background image — contained like architecture section, with organic mask */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-full max-w-[1200px] pointer-events-none overflow-hidden"
+        style={{
+          maskImage: "url('/assets/hero-mask.svg')",
+          maskSize: "100% 100%",
+          maskPosition: "center",
+          maskRepeat: "no-repeat",
+          WebkitMaskImage: "url('/assets/hero-mask.svg')",
+          WebkitMaskSize: "100% 100%",
+          WebkitMaskPosition: "center",
+          WebkitMaskRepeat: "no-repeat",
+        }}
+      >
+        {/*
+          Cover wrapper — replaces object-cover with a shared coordinate system.
+          Maintains image aspect ratio (1312/912) and always covers 120% of parent.
+          Both image and overlay live inside, so they track together perfectly.
+        */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[120%] min-h-[120%]"
+          style={{ aspectRatio: "1312 / 912" }}
+        >
+          <img
+            src="/assets/hero.png"
+            alt=""
+            className="absolute inset-0 w-full h-full"
+          />
+          <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
+
+          {/* Decorative overlay — positioned in image coordinates, tracks the sweater logo */}
+          <DevOverlayEditor id="hero" mode="percent">
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 hidden lg:block"
+              style={{ left: "57.4%", top: "calc(46% - 32px)", width: "15.8%", aspectRatio: "245 / 315" }}
+            >
+              <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
+              <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
+              <div className="absolute inset-0 border border-white" />
+              <div className="absolute -left-[11px] -top-[11px] w-[22px] h-[22px] border border-white" />
+              <div className="absolute -left-[11px] -bottom-[11px] w-[22px] h-[22px] border border-white" />
+              <div className="absolute -right-[11px] -bottom-[11px] w-[22px] h-[22px] border border-white" />
+              <div className="absolute -right-[11px] -top-[11px] w-[22px] h-[22px] border border-white" />
+            </div>
+          </DevOverlayEditor>
+        </div>
+      </div>
 
       <div className="relative max-w-[1200px] mx-auto h-full">
         {/* Floating text — right side */}
