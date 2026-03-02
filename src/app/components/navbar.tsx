@@ -53,7 +53,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        className="fixed left-0 right-0 z-50 top-0 lg:top-[24px] select-none p-[16px] pb-0 lg:p-0"
+        className="fixed left-0 right-0 z-50 top-0 lg:top-[24px] select-none p-[16px] pb-0 lg:p-0 max-w-[390px] lg:max-w-none mx-auto"
       >
         {/* Mobile closed bar — visible only below lg */}
         <div
@@ -65,7 +65,14 @@ export function Navbar() {
             border: "1px solid rgba(246,243,234,0.12)",
           }}
         >
-          <a href="#" className="flex items-center flex-shrink-0">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center flex-shrink-0"
+          >
             <img
               src="/assets/gasless-logo.svg"
               alt="0xGasless"
@@ -177,8 +184,9 @@ export function Navbar() {
       </nav>
 
       {/* Mobile morphing hamburger/X — outside nav to escape its stacking context */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-[70] max-w-[390px] mx-auto pointer-events-none">
       <button
-        className="lg:hidden fixed top-[28px] right-[32px] z-[70] w-[24px] h-[24px] select-none"
+        className="absolute top-[28px] right-[32px] w-[24px] h-[24px] select-none pointer-events-auto"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
@@ -227,6 +235,7 @@ export function Navbar() {
           />
         </svg>
       </button>
+      </div>
 
       {/* Mobile full-screen menu overlay */}
       <AnimatePresence>
@@ -236,11 +245,9 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: EASE_OUT_CUBIC }}
-            className="lg:hidden fixed z-[60] flex flex-col px-[16px] pb-[16px]"
+            className="lg:hidden fixed z-[60] flex flex-col px-[16px] pb-[16px] left-0 right-0 mx-auto max-w-[358px]"
             style={{
               top: 16,
-              left: 16,
-              right: 16,
               backgroundColor: "rgba(10,11,13,0.9)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
@@ -249,7 +256,15 @@ export function Navbar() {
           >
             {/* Top row: matches closed bar py-[12px] so logo stays in place */}
             <div className="flex items-center justify-between py-[12px]">
-              <a href="#" className="flex items-center gap-[8px]">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileOpen(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="flex items-center gap-[8px]"
+              >
                 <img
                   src="/assets/gasless-logo.svg"
                   alt="0xGasless"
@@ -280,7 +295,7 @@ export function Navbar() {
               className="flex flex-col gap-[36px] pt-[12px]"
             >
               {/* Nav links */}
-              <div className="flex flex-col gap-[20px] pl-[4px]">
+              <div className="flex flex-col gap-[20px] pl-[20px]">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.label}
@@ -312,7 +327,7 @@ export function Navbar() {
                 {/* Agentkit Repo row */}
                 <a
                   href="#"
-                  className="flex items-center justify-between pl-[4px] py-[8px] text-white"
+                  className="flex items-center justify-between pl-[20px] py-[8px] text-white"
                 >
                   <span className="font-['DM_Sans',sans-serif] font-medium text-[14px] leading-[1.5]">
                     Agentkit Repo
