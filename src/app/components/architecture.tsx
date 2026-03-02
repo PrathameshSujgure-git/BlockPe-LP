@@ -215,7 +215,7 @@ export function Architecture() {
         <img src="/assets/architecture.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative z-10">
+      <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 relative z-10">
         {/* Inner container offset 62px from left within the 1200px */}
         <div className="w-full lg:w-[1076px] lg:ml-[62px]">
           {/* ---- Title area ---- */}

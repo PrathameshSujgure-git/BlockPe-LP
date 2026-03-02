@@ -57,7 +57,7 @@ function AnimatedCountStat({ value, label, delay = 0 }: { value: string; label: 
 export function CommunityStats() {
   return (
     <section id="community" className="py-[120px]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col items-center gap-[84px]">
+      <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 flex flex-col items-center gap-[84px]">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

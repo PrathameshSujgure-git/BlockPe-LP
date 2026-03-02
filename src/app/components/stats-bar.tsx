@@ -128,7 +128,7 @@ const logos = [SonicLogo, AvalancheLogo, LogoSvgBrand, BnbChainLogo];
 
 export function StatsBar() {
   return (
-    <section className="w-full max-w-[1200px] mx-auto select-none px-[16px] lg:px-0 pt-[60px] lg:pt-0 pb-[80px] lg:pb-0">
+    <section className="w-full max-w-[390px] lg:max-w-[1200px] mx-auto select-none px-[16px] lg:px-0 pt-[60px] lg:pt-0 pb-[80px] lg:pb-0">
       <div className="flex flex-col lg:flex-row items-stretch">
         {/* Stats - Desktop (lg+) */}
         <div className="hidden lg:flex lg:flex-row items-stretch">
@@ -181,7 +181,7 @@ export function StatsBar() {
         </div>
 
         {/* Ticker */}
-        <div className="flex-1 relative overflow-hidden flex items-center">
+        <div className="flex-1 relative overflow-hidden flex items-center -mx-4 lg:mx-0">
           <div className="w-full pt-[22px]">
             <div className="overflow-hidden h-[86px]">
               <motion.div

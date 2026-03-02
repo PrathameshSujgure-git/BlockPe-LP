@@ -33,7 +33,7 @@ export function FooterCTA() {
 
       <div className="relative flex flex-col h-full">
         {/* CTA Section */}
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col items-center pt-[120px]">
+        <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 flex flex-col items-center pt-[120px]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
