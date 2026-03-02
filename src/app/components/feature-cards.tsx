@@ -22,15 +22,15 @@ interface FeatureCardProps {
 
 function FeatureCard({ title, items, ctaText, image, reversed = false, index, textGap = "gap-[64px]" }: FeatureCardProps) {
   const imageSection = (
-    <div className="w-full lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0">
+    <div className="w-[calc(100%+32px)] -mx-4 lg:mx-0 lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0">
       <img src={image} alt="" className="absolute inset-0 w-full h-full object-contain" />
     </div>
   );
 
   const textSection = (
-    <div className={`flex flex-col ${textGap} px-[12px] pb-[12px] w-full lg:w-[430px]`}>
+    <div className={`flex flex-col ${textGap} lg:px-[12px] pb-[12px] w-full lg:w-[430px]`}>
       <div className="flex flex-col gap-6">
-        <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[28px] lg:text-[32px] text-[#f6f3ea] tracking-[-0.64px] leading-[1.25]">
+        <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[28px] lg:text-[32px] text-[#f6f3ea] tracking-[-0.56px] lg:tracking-[-0.64px] leading-[1.35] lg:leading-[1.25]">
           {title}
         </h3>
         <div className="flex flex-col gap-[12px]">
@@ -108,8 +108,8 @@ const features = [
 
 export function FeatureCards() {
   return (
-    <section id="features" className="bg-[#0a0b0d] pt-[120px] pb-[160px]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col items-center gap-[104px]">
+    <section id="features" className="bg-[#0a0b0d] py-[60px] lg:pt-[120px] lg:pb-[160px]">
+      <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 flex flex-col items-start lg:items-center gap-[52px] lg:gap-[104px]">
         {features.map((feature, i) => (
           <FeatureCard key={i} {...feature} index={i} />
         ))}
