@@ -12,7 +12,8 @@ import { FooterCTA } from "./components/footer-cta";
 
 export default function Home() {
   return (
-    <div className="min-h-screen text-[#f6f3ea] overflow-x-hidden font-['DM_Sans',sans-serif]">
+    <div className="min-h-screen text-[#f6f3ea] font-['DM_Sans',sans-serif]">
+    <div className="min-h-screen text-[#f6f3ea] overflow-x-clip font-['DM_Sans',sans-serif]">
       {/* Main content sits above the fixed footer */}
       <div className="relative z-10 bg-[#0a0b0d]">
         <Navbar />
