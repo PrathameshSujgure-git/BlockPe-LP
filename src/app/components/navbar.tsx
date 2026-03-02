@@ -53,10 +53,18 @@ export function Navbar() {
   return (
     <>
       <nav
-        className="fixed left-0 right-0 z-50 top-0 lg:top-[24px] select-none"
+        className="fixed left-0 right-0 z-50 top-0 lg:top-[24px] select-none p-[16px] pb-0 lg:p-0"
       >
         {/* Mobile closed bar — visible only below lg */}
-        <div className="lg:hidden flex items-center justify-between px-[16px] py-[12px] bg-[#0a0b0d]">
+        <div
+          className="lg:hidden flex items-center justify-between px-[16px] py-[12px]"
+          style={{
+            backgroundColor: "rgba(10,11,13,0.9)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(246,243,234,0.12)",
+          }}
+        >
           <a href="#" className="flex items-center flex-shrink-0">
             <img
               src="/assets/gasless-logo.svg"
@@ -170,7 +178,7 @@ export function Navbar() {
 
       {/* Mobile morphing hamburger/X — outside nav to escape its stacking context */}
       <button
-        className="lg:hidden fixed top-[12px] right-[16px] z-[70] w-[24px] h-[24px] select-none"
+        className="lg:hidden fixed top-[28px] right-[32px] z-[70] w-[24px] h-[24px] select-none"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
@@ -181,6 +189,7 @@ export function Navbar() {
             stroke="#f6f3ea"
             strokeWidth="2"
             strokeLinecap="round"
+            initial={{ y1: 7, y2: 7, rotate: 0 }}
             animate={{
               y1: mobileOpen ? 12 : 7,
               y2: mobileOpen ? 12 : 7,
@@ -194,6 +203,7 @@ export function Navbar() {
             stroke="#f6f3ea"
             strokeWidth="2"
             strokeLinecap="round"
+            initial={{ opacity: 1, scaleX: 1 }}
             animate={{
               opacity: mobileOpen ? 0 : 1,
               scaleX: mobileOpen ? 0 : 1,
@@ -206,6 +216,7 @@ export function Navbar() {
             stroke="#f6f3ea"
             strokeWidth="2"
             strokeLinecap="round"
+            initial={{ y1: 17, y2: 17, rotate: 0 }}
             animate={{
               y1: mobileOpen ? 12 : 17,
               y2: mobileOpen ? 12 : 17,
@@ -225,11 +236,15 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: EASE_OUT_CUBIC }}
-            className="lg:hidden fixed inset-0 z-[60] flex flex-col px-[16px]"
+            className="lg:hidden fixed z-[60] flex flex-col px-[16px] pb-[16px]"
             style={{
+              top: 16,
+              left: 16,
+              right: 16,
               backgroundColor: "rgba(10,11,13,0.9)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(246,243,234,0.12)",
             }}
           >
             {/* Top row: matches closed bar py-[12px] so logo stays in place */}
@@ -265,7 +280,7 @@ export function Navbar() {
               className="flex flex-col gap-[36px] pt-[12px]"
             >
               {/* Nav links */}
-              <div className="flex flex-col gap-[20px]">
+              <div className="flex flex-col gap-[20px] pl-[4px]">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.label}
@@ -297,7 +312,7 @@ export function Navbar() {
                 {/* Agentkit Repo row */}
                 <a
                   href="#"
-                  className="flex items-center justify-between px-[12px] py-[8px] text-white"
+                  className="flex items-center justify-between pl-[4px] py-[8px] text-white"
                 >
                   <span className="font-['DM_Sans',sans-serif] font-medium text-[14px] leading-[1.5]">
                     Agentkit Repo

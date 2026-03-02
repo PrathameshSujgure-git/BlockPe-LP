@@ -128,31 +128,56 @@ const logos = [SonicLogo, AvalancheLogo, LogoSvgBrand, BnbChainLogo];
 
 export function StatsBar() {
   return (
-    <section className="w-full max-w-[1200px] mx-auto select-none">
+    <section className="w-full max-w-[1200px] mx-auto select-none px-[16px] lg:px-0 pt-[60px] lg:pt-0 pb-[80px] lg:pb-0">
       <div className="flex flex-col lg:flex-row items-stretch">
-        {/* Stats */}
-        <div className="flex flex-col md:flex-row items-stretch">
+        {/* Stats - Desktop (lg+) */}
+        <div className="hidden lg:flex lg:flex-row items-stretch">
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
             <CountUp target="99" suffix="%" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
               Agents Uptime
             </div>
           </div>
-          <div className="hidden md:block w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
+          <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
             <CountUp target="3.5" suffix="m+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
               Total value
             </div>
           </div>
-          <div className="hidden md:block w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
+          <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
             <CountUp target="9" suffix="+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] tracking-[0.28px] uppercase">
               Protocols integrated
             </div>
           </div>
-          <div className="hidden md:block w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
+          <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
+        </div>
+
+        {/* Stats - Mobile (below lg) */}
+        <div className="flex flex-col lg:hidden mb-[48px]">
+          {/* 99% Agents Uptime */}
+          <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border border-[rgba(246,243,234,0.1)]">
+            <CountUp target="99" suffix="%" />
+            <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
+              Agents Uptime
+            </div>
+          </div>
+          {/* 9+ Protocols Integrated */}
+          <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border-l border-r border-[rgba(246,243,234,0.1)]">
+            <CountUp target="9" suffix="+" />
+            <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] tracking-[0.28px] uppercase">
+              Protocols integrated
+            </div>
+          </div>
+          {/* 3.5M+ Total Value */}
+          <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border border-[rgba(246,243,234,0.1)]">
+            <CountUp target="3.5" suffix="m+" />
+            <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
+              Total value
+            </div>
+          </div>
         </div>
 
         {/* Ticker */}
