@@ -466,7 +466,7 @@ function NotificationPanel({ replayTrigger = 0 }: { replayTrigger?: number }) {
         </div>
       </div>
       {/* Fade overlay */}
-      <div className="absolute bottom-[-50px] left-[-10px] w-[299px] h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] to-[#131314] to-[58%] pointer-events-none" />
+      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] to-[#131314] to-[58%] pointer-events-none" />
     </div>
   );
 }
@@ -513,7 +513,8 @@ function AutonomyGraph({ replayTrigger = 0 }: { replayTrigger?: number }) {
   }, [stage]);
 
   return (
-    <div ref={containerRef} className="h-[160px] relative w-full">
+    <div ref={containerRef} className="h-[160px] relative w-full flex items-center justify-center">
+      <div className="relative w-[260px] h-[160px]">
       {/* Grid background */}
       <img
         src="/assets/usecase-grid-bg.svg"
@@ -686,6 +687,7 @@ function AutonomyGraph({ replayTrigger = 0 }: { replayTrigger?: number }) {
       >
         FULL AUTONOMY
       </motion.span>
+      </div>
     </div>
   );
 }
@@ -728,7 +730,7 @@ function UseCaseCard({ title, description, children, index }: UseCaseCardProps) 
 export function UseCases() {
   return (
     <section id="use-cases" className="py-[120px]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-[52px] flex flex-col items-center gap-[48px]">
+      <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-[52px] flex flex-col items-center gap-[48px]">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
