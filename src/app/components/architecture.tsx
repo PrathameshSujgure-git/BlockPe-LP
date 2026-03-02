@@ -3,9 +3,7 @@
 import { motion } from "motion/react";
 import { Smile, Cpu, Lock, GitPullRequest } from "lucide-react";
 
-const imgArchBg = "/assets/arch-bg.png";
 import { SecondaryButton } from "./primary-button";
-import { DevOverlayEditor } from "./dev-overlay-editor";
 
 /* ------------------------------------------------------------------ */
 /*  Layer data                                                         */
@@ -212,38 +210,9 @@ const featureBoxes = [
 export function Architecture() {
   return (
     <section className="relative w-full py-[120px]">
-      {/* Background image with dark tint */}
+      {/* Background image */}
       <div className="absolute left-1/2 -translate-x-1/2 top-[-40px] h-[807px] w-full max-w-[1200px] pointer-events-none overflow-hidden">
-        <img src={imgArchBg} alt="" className="absolute h-[125.69%] left-[-14.04%] top-[-9.77%] w-[114.04%] max-w-none" />
-        {/* 30% dark tint overlay */}
-        <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
-      </div>
-
-      {/* Top gradient mask — aligned with top of bg image, dark at top fades to transparent */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 top-[-40px] w-[1200px] h-[313px] -scale-y-100 pointer-events-none z-[1]"
-        style={{ background: "linear-gradient(to bottom, rgba(10,11,13,0) 0%, #0a0b0d 71.605%)" }}
-      />
-
-      {/* Bottom gradient mask — aligned with bottom of bg image, transparent fades to dark */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 top-[587px] w-[1200px] h-[180px] pointer-events-none z-[1]"
-        style={{ background: "linear-gradient(to bottom, rgba(10,11,13,0) 0%, #0a0b0d 71.605%)" }}
-      />
-
-      {/* Decorative rectangle overlay on bg image */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[371px] w-full max-w-[1200px] pointer-events-none hidden lg:block">
-        <DevOverlayEditor id="architecture">
-          <div className="absolute left-[62px] w-[125px] h-[137px]">
-            <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
-            <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-            <div className="absolute inset-0 border border-white mix-blend-soft-light" />
-            <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-          </div>
-        </DevOverlayEditor>
+        <img src="/assets/architecture.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-0 relative z-10">

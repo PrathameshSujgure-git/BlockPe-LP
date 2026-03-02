@@ -1,12 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { DevOverlayEditor } from "./dev-overlay-editor";
-
-const imgCard1 = "/assets/d51a3aec84994cf52a84b4575512d98e6fc943e1.png";
-const imgCard2 = "/assets/6e7eb94f0ba2b8ab9039490ce29e5e4f0941e726.png";
-const imgCard3 = "/assets/54632494ce24f7bc1a80e5f9d0233523be60dc31.png";
-import { imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E0154521, imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154523, imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154525 } from "../../imports/svg-9n1mo";
 
 function CheckIcon() {
   return (
@@ -16,53 +10,20 @@ function CheckIcon() {
   );
 }
 
-function DecorativeCardOverlay({ className = "" }: { className?: string }) {
-  return (
-    <div className={`absolute ${className}`}>
-      <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 border border-white mix-blend-soft-light" />
-      <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-    </div>
-  );
-}
-
 interface FeatureCardProps {
   title: string;
   items: string[];
   ctaText: string;
   image: string;
-  maskImage: string;
   reversed?: boolean;
   index: number;
   textGap?: string;
-  overlayClassName?: string;
-  overlayId: string;
 }
 
-function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false, index, textGap = "gap-[64px]", overlayClassName = "left-[187px] top-[180px] w-[125px] h-[137px]", overlayId }: FeatureCardProps) {
+function FeatureCard({ title, items, ctaText, image, reversed = false, index, textGap = "gap-[64px]" }: FeatureCardProps) {
   const imageSection = (
-    <div className="w-full lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{
-          maskImage: `url('${maskImage}')`,
-          maskSize: "cover",
-          maskPosition: "center",
-          maskRepeat: "no-repeat",
-          WebkitMaskImage: `url('${maskImage}')`,
-          WebkitMaskSize: "cover",
-          WebkitMaskPosition: "center",
-          WebkitMaskRepeat: "no-repeat",
-        }}
-      >
-        <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
-      </div>
-      <DevOverlayEditor id={overlayId}><DecorativeCardOverlay className={overlayClassName} /></DevOverlayEditor>
+    <div className="w-full lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0">
+      <img src={image} alt="" className="absolute inset-0 w-full h-full object-contain" />
     </div>
   );
 
@@ -115,11 +76,9 @@ const features = [
       "Support automated transactions without user friction",
     ],
     ctaText: "Read about x402 in docs",
-    image: imgCard1,
-    maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E0154521,
+    image: "/assets/feature-1.webp",
     reversed: false,
     textGap: "gap-[64px]",
-    overlayId: "feature-0",
   },
   {
     title: "AI agents autonomously perform onchain interaction",
@@ -129,12 +88,9 @@ const features = [
       "Give AI agents direct access to wallets and onchain actions",
     ],
     ctaText: "Read about AgentKit in docs",
-    image: imgCard2,
-    maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154523,
+    image: "/assets/feature-2.webp",
     reversed: true,
     textGap: "gap-[64px]",
-    overlayClassName: "left-[130px] top-[204px] w-[220px] h-[190px]",
-    overlayId: "feature-1",
   },
   {
     title: "ERC-4337 account abstraction",
@@ -144,12 +100,9 @@ const features = [
       "Support relayer and paymaster systems for frictionless user experiences",
     ],
     ctaText: "Read about ERC-4337 in docs",
-    image: imgCard3,
-    maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154525,
+    image: "/assets/feature-3.webp",
     reversed: false,
     textGap: "gap-[56px]",
-    overlayClassName: "left-[155px] top-[129px] w-[210px] h-[152px]",
-    overlayId: "feature-2",
   },
 ];
 

@@ -2,10 +2,6 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
-import { DevOverlayEditor } from "./dev-overlay-editor";
-
-const imgCommunity = "/assets/9206acdd69b7297ac5c787bfbff6a2e443577cda.png";
-import { imgGeminiGeneratedImageG51V4Gg51V4Gg51V1 } from "../../imports/svg-9n1mo";
 
 function AnimatedCountStat({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,19 +53,6 @@ function AnimatedCountStat({ value, label, delay = 0 }: { value: string; label: 
   );
 }
 
-function DecorativeCardOverlay() {
-  return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[197px] h-[208px]">
-      <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 border border-white mix-blend-soft-light" />
-      <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-      <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-    </div>
-  );
-}
 
 export function CommunityStats() {
   return (
@@ -98,22 +81,7 @@ export function CommunityStats() {
         <div className="relative w-full max-w-[1120px] h-[384px] hidden lg:block">
           {/* Center illustration */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[499px] h-[384px] z-0">
-            <div
-              className="absolute inset-0"
-              style={{
-                maskImage: `url('${imgGeminiGeneratedImageG51V4Gg51V4Gg51V1}')`,
-                maskSize: "cover",
-                maskPosition: "center",
-                maskRepeat: "no-repeat",
-                WebkitMaskImage: `url('${imgGeminiGeneratedImageG51V4Gg51V4Gg51V1}')`,
-                WebkitMaskSize: "cover",
-                WebkitMaskPosition: "center",
-                WebkitMaskRepeat: "no-repeat",
-              }}
-            >
-              <img src={imgCommunity} alt="" className="absolute inset-0 w-full h-full object-cover" />
-            </div>
-            <DevOverlayEditor id="community"><DecorativeCardOverlay /></DevOverlayEditor>
+            <img src="/assets/community.webp" alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
 
           {/* Stats at exact Figma positions */}
