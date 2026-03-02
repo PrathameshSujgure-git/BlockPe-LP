@@ -36,5 +36,6 @@ export default function Home() {
       </div>
       <FooterCTA />
     </div>
+    </div>
   );
 }
