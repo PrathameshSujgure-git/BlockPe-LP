@@ -214,7 +214,7 @@ export function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col gap-[16px] shrink-0 mb-10 lg:mb-0"
+            className="flex flex-col gap-[16px] shrink-0 mb-10 lg:mb-0 lg:sticky lg:top-[120px]"
           >
             <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25]">
               FAQs
