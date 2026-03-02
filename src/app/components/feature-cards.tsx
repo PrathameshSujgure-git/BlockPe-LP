@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 
 const imgCard1 = "/assets/d51a3aec84994cf52a84b4575512d98e6fc943e1.png";
 const imgCard2 = "/assets/6e7eb94f0ba2b8ab9039490ce29e5e4f0941e726.png";
@@ -20,11 +21,11 @@ function DecorativeCardOverlay({ className = "" }: { className?: string }) {
     <div className={`absolute ${className}`}>
       <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
       <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-      <div className="absolute inset-0 border border-white" />
-      <div className="absolute -left-[7px] -top-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -left-[7px] -bottom-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -right-[7px] -bottom-[7px] w-[13px] h-[13px] border border-white" />
-      <div className="absolute -right-[7px] -top-[7px] w-[13px] h-[13px] border border-white" />
+      <div className="absolute inset-0 border border-white mix-blend-soft-light" />
+      <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+      <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
     </div>
   );
 }
@@ -37,9 +38,12 @@ interface FeatureCardProps {
   maskImage: string;
   reversed?: boolean;
   index: number;
+  textGap?: string;
+  overlayClassName?: string;
+  overlayId: string;
 }
 
-function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false, index }: FeatureCardProps) {
+function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false, index, textGap = "gap-[64px]", overlayClassName = "left-[187px] top-[180px] w-[125px] h-[137px]", overlayId }: FeatureCardProps) {
   const imageSection = (
     <div className="w-full lg:w-[461px] h-[300px] lg:h-[476px] relative flex-shrink-0 overflow-hidden">
       <div
@@ -58,17 +62,17 @@ function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false
         <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
       </div>
-      <DecorativeCardOverlay className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[142px] h-[182px]" />
+      <DevOverlayEditor id={overlayId}><DecorativeCardOverlay className={overlayClassName} /></DevOverlayEditor>
     </div>
   );
 
   const textSection = (
-    <div className="flex flex-col justify-between gap-16 px-3 pb-3 w-full lg:flex-1">
+    <div className={`flex flex-col ${textGap} px-[12px] pb-[12px] w-full lg:w-[430px]`}>
       <div className="flex flex-col gap-6">
         <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[28px] lg:text-[32px] text-[#f6f3ea] tracking-[-0.64px] leading-[1.25]">
           {title}
         </h3>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-[12px]">
           {items.map((item, i) => (
             <div key={i} className="flex gap-3 items-start">
               <CheckIcon />
@@ -80,9 +84,9 @@ function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false
         </div>
       </div>
       <a href="#" className="w-full border border-[#232325] block group hover:border-[#00dd7f]/40 transition-colors">
-        <div className="flex items-center justify-between px-5 py-3 text-[#f6f3ea]">
+        <div className="flex items-center justify-between pl-[20px] pr-[21px] py-[12px] text-[#f6f3ea]">
           <span className="font-['DM_Sans',sans-serif] font-medium text-[16px]">{ctaText}</span>
-          <span className="font-['DM_Sans',sans-serif] font-semibold text-[14px] tracking-[0.42px] group-hover:translate-x-1 transition-transform">→</span>
+          <span className="font-['PP_Mori',sans-serif] font-semibold text-[14px] tracking-[0.42px] group-hover:translate-x-1 transition-transform">&rarr;</span>
         </div>
       </a>
     </div>
@@ -94,7 +98,7 @@ function FeatureCard({ title, items, ctaText, image, maskImage, reversed = false
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      className={`flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-10 items-stretch`}
+      className={`flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-[40px] items-center`}
     >
       {imageSection}
       {textSection}
@@ -114,6 +118,8 @@ const features = [
     image: imgCard1,
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E0154521,
     reversed: false,
+    textGap: "gap-[64px]",
+    overlayId: "feature-0",
   },
   {
     title: "AI agents autonomously perform onchain interaction",
@@ -126,6 +132,9 @@ const features = [
     image: imgCard2,
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154523,
     reversed: true,
+    textGap: "gap-[64px]",
+    overlayClassName: "left-[130px] top-[204px] w-[220px] h-[190px]",
+    overlayId: "feature-1",
   },
   {
     title: "ERC-4337 account abstraction",
@@ -138,13 +147,16 @@ const features = [
     image: imgCard3,
     maskImage: imgMemeticdesignteamAManInSuitOpeningASafeKeptInAGard06Cea6Ad1A4B481AB6B27Abfe4E154525,
     reversed: false,
+    textGap: "gap-[56px]",
+    overlayClassName: "left-[155px] top-[129px] w-[210px] h-[152px]",
+    overlayId: "feature-2",
   },
 ];
 
 export function FeatureCards() {
   return (
-    <section id="features" className="bg-[#0a0b0d] py-[120px] pb-[160px]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col gap-[104px]">
+    <section id="features" className="bg-[#0a0b0d] pt-[120px] pb-[160px]">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 flex flex-col items-center gap-[104px]">
         {features.map((feature, i) => (
           <FeatureCard key={i} {...feature} index={i} />
         ))}

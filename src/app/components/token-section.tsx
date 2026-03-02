@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { DevOverlayEditor } from "./dev-overlay-editor";
 import { PrimaryButton } from "./primary-button";
 
 const imgGrasslands = "/assets/139d0d84268f4df0b72fd6da1d543c2beeb44ad3.png";
@@ -23,8 +24,8 @@ export function TokenSection() {
           </div>
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
-            <div className="flex flex-col gap-4 items-center text-center px-6">
+          <div className="absolute inset-x-0 top-[23px] flex flex-col items-center z-10">
+            <div className="flex flex-col gap-[16px] items-center text-center px-6">
               <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25]">
                 0xGasless Token
               </h2>
@@ -36,19 +37,23 @@ export function TokenSection() {
               </p>
             </div>
 
-            <PrimaryButton>Check $0xgas</PrimaryButton>
+            <div className="mt-[48px]">
+              <PrimaryButton>Check $0xgas</PrimaryButton>
+            </div>
           </div>
 
           {/* Decorative card overlay */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[251px] h-[208px] mt-[10px] pointer-events-none">
-            <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
-            <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
-            <div className="absolute inset-0 border border-white" />
-            <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
-            <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
-          </div>
+          <DevOverlayEditor id="token">
+            <div className="absolute left-1/2 -translate-x-1/2 top-[196px] w-[251px] h-[208px] pointer-events-none">
+              <div className="absolute inset-0 bg-white/5 border border-white mix-blend-soft-light" />
+              <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] border border-white mix-blend-soft-light" />
+              <div className="absolute inset-0 border border-white mix-blend-soft-light" />
+              <div className="absolute -left-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+              <div className="absolute -left-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+              <div className="absolute -right-[8px] -bottom-[8px] w-[16px] h-[16px] border border-white" />
+              <div className="absolute -right-[8px] -top-[8px] w-[16px] h-[16px] border border-white" />
+            </div>
+          </DevOverlayEditor>
         </motion.div>
       </div>
     </section>
