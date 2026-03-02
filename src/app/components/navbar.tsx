@@ -16,9 +16,9 @@ const SCROLL_THRESHOLD_PERCENT = 0.25;
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "Use cases", href: "#use-cases" },
-  { label: "$0xGas", href: "#0xgas" },
   { label: "Community", href: "#community" },
+  { label: "$0xGas", href: "#0xgas" },
+  { label: "Use cases", href: "#use-cases" },
 ];
 
 export function Navbar() {
@@ -91,6 +91,10 @@ export function Navbar() {
               {/* Logo — morphs between large and small */}
               <a
                 href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
                 className="flex items-center flex-shrink-0 transition-all duration-700"
                 style={{
                   gap: scrolled ? 8 : 0,
@@ -126,6 +130,10 @@ export function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+                    }}
                     className="font-['DM_Sans',sans-serif] font-medium text-[14px] text-[#f6f3ea] leading-[1.5] hover:text-[#00dd7f] transition-colors"
                   >
                     {link.label}
@@ -267,7 +275,11 @@ export function Navbar() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 + i * 0.05, ease: EASE_OUT_QUINT }}
                     className="font-['DM_Sans',sans-serif] font-medium text-[16px] text-[#f6f3ea] leading-[1.5]"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+                    }}
                   >
                     {link.label}
                   </motion.a>
