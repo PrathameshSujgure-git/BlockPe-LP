@@ -7,25 +7,9 @@ import { PrimaryButton, SecondaryButton } from "./primary-button";
 export function Hero() {
   return (
     <section className="relative w-full h-screen overflow-hidden bg-[#0a0b0d]">
-      {/* Mask only on lg+ screens */}
-      <style>{`
-        @media (min-width: 1024px) {
-          .hero-bg-container {
-            mask-image: url('/assets/hero-mask.svg');
-            mask-size: 100% 100%;
-            mask-position: center;
-            mask-repeat: no-repeat;
-            -webkit-mask-image: url('/assets/hero-mask.svg');
-            -webkit-mask-size: 100% 100%;
-            -webkit-mask-position: center;
-            -webkit-mask-repeat: no-repeat;
-          }
-        }
-      `}</style>
-
-      {/* Background image — edge-to-edge on mobile, contained with mask on desktop */}
+      {/* Background image — edge-to-edge on mobile, contained on desktop */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-full lg:max-w-[1200px] pointer-events-none overflow-hidden hero-bg-container"
+        className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-full lg:max-w-[1200px] pointer-events-none overflow-hidden"
       >
         {/*
           Cover wrapper — replaces object-cover with a shared coordinate system.
@@ -33,13 +17,12 @@ export function Hero() {
           Both image and overlay live inside, so they track together perfectly.
         */}
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[120%] min-h-[120%]"
-          style={{ aspectRatio: "1312 / 912" }}
+          className="absolute inset-0 w-full h-full"
         >
           <img
-            src="/assets/hero.png"
+            src="/assets/hero.webp"
             alt=""
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[rgba(10,11,13,0.3)]" />
 
