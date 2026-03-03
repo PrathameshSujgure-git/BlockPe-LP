@@ -43,7 +43,7 @@ export function FooterCTA() {
 
       <div className="relative flex flex-col h-full">
         {/* CTA Section */}
-        <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 flex flex-col items-start lg:items-center pt-[24px] lg:pt-[120px]">
+        <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0 flex flex-col items-start lg:items-center pt-[24px] lg:pt-0 lg:mt-auto lg:mb-[80px]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export function FooterCTA() {
         </div>
 
         {/* Logo wordmark + footer bar — both inside the same container for alignment (desktop only) */}
-        <div className="hidden lg:flex mt-auto max-w-[1200px] w-full mx-auto pb-[24px] flex-col gap-[24px]">
+        <div className="hidden lg:flex max-w-[1200px] w-full mx-auto pb-[24px] flex-col gap-[24px]">
           {/* BlockPe wordmark logo */}
           <img
             src="/assets/blockpe-wordmark.webp"
