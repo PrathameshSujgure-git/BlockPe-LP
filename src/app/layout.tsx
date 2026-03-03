@@ -2,9 +2,48 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Agentation } from "agentation";
 
+// TODO: Uncomment and update once domain is finalized
+// const siteUrl = "https://blockpe.com";
+
+const title = "BlockPe — Payment Infrastructure for AI Agents";
+const description =
+  "Gasless, autonomous payment infrastructure that lets AI agents execute onchain transactions. Built on ERC-4337 account abstraction with production-ready SDKs.";
+
 export const metadata: Metadata = {
-  title: "BlockPe - 0xGasless",
-  description: "0xGasless Landing Page",
+  // TODO: Uncomment once domain is finalized
+  // metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    // TODO: Uncomment once domain is finalized
+    // url: siteUrl,
+    siteName: "BlockPe",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BlockPe — Payment Infrastructure for AI Agents",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  other: {
+    "theme-color": "#0a0b0d",
+  },
 };
 
 export default function RootLayout({
