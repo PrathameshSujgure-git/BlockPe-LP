@@ -7,6 +7,10 @@ const imgBlog1 = "/assets/blog-card-1.webp";
 const imgBlog2 = "/assets/blog-card-2.webp";
 const imgBlog3 = "/assets/blog-card-3.webp";
 
+const imgBlog1Mobile = "/assets/blog-1-mobile.webp";
+const imgBlog2Mobile = "/assets/blog-2-mobile.webp";
+const imgBlog3Mobile = "/assets/blog-3-mobile.webp";
+
 function Tag({ label }: { label: string }) {
   return (
     <div className="border border-[#232325] px-[8px] py-[4px]">
@@ -33,7 +37,7 @@ function DateInfo({ date, readTime }: { date: string; readTime: string }) {
 
 export function BlogSection() {
   return (
-    <section className="py-[120px]">
+    <section className="pt-[40px] pb-[80px] lg:py-[120px]">
       <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-0">
         <div className="flex flex-col items-center gap-[48px]">
           {/* Title */}
@@ -42,10 +46,57 @@ export function BlogSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25] text-center"
+            className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-0.8px] md:tracking-[-2.24px] leading-[1.25] text-left lg:text-center"
           >
-            Latest from Gasless&apos; Blog
+            Latest from BlockPe&apos;s Blog
           </motion.h2>
+
+          {/* Mobile Cards */}
+          <div className="flex flex-col gap-[16px] w-full lg:hidden">
+            {[
+              {
+                img: imgBlog1Mobile,
+                title: "AI Agents Go Cross-Chain: BlockPe x VIA Labs Partnership",
+                date: "24th Jan 2026",
+                readTime: "3 min read",
+              },
+              {
+                img: imgBlog2Mobile,
+                title: "The $300M Web3 Crisis: How Wallet Drains Threaten Crypto",
+                date: "21st Dec 2025",
+                readTime: "5 min read",
+              },
+              {
+                img: imgBlog3Mobile,
+                title: "Build Gasless Swaps in Minutes with BlockPe on Fantom",
+                date: "1st Feb 2026",
+                readTime: "3 min read",
+              },
+            ].map((post, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-[#131314] border border-[#232325] p-[8px] flex flex-col overflow-clip cursor-pointer group"
+              >
+                <div className="relative w-full h-[285px] overflow-hidden">
+                  <img
+                    src={post.img}
+                    alt=""
+                    className="w-full h-full object-cover group-hover:scale-[1.015] transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex flex-col gap-[24px] pt-[8px] px-[8px]">
+                  <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[24px] text-[#f6f3ea] tracking-[-0.48px] leading-[1.25]">
+                    {post.title}
+                  </h3>
+                  <DateInfo date={post.date} readTime={post.readTime} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
           {/* Grid */}
           <motion.div
@@ -53,7 +104,7 @@ export function BlogSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col lg:flex-row w-full"
+            className="hidden lg:flex lg:flex-row w-full"
           >
             {/* Large post — left column */}
             <div className="flex-1 bg-[#131314] border-y border-[#232325] p-[8px] flex flex-col group cursor-pointer overflow-clip">
@@ -66,7 +117,7 @@ export function BlogSection() {
               </div>
               <div className="flex flex-col gap-[24px] pt-[8px] px-[8px] flex-1">
                 <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[24px] text-[#f6f3ea] tracking-[-0.48px] leading-[1.25]">
-                  AI Agents Go Cross-Chain: 0xGasless x VIA Labs Partnership
+                  AI Agents Go Cross-Chain: BlockPe x VIA Labs Partnership
                 </h3>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                   <DateInfo date="24th Jan 2026" readTime="3 min read" />
@@ -110,7 +161,7 @@ export function BlogSection() {
                 <div className="flex items-start justify-between w-full">
                   <div className="w-[252px] px-[8px] flex flex-col justify-center shrink-0">
                     <h4 className="font-['PP_Mori',sans-serif] font-semibold text-[24px] text-[#f6f3ea] tracking-[-0.48px] leading-[1.25] max-w-[236px]">
-                      Build Gasless Swaps in Minutes with 0xGasless on Fantom
+                      Build Gasless Swaps in Minutes with BlockPe on Fantom
                     </h4>
                   </div>
                   <div className="relative h-[159px] flex-1 overflow-hidden flex-shrink-0">
