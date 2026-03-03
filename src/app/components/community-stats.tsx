@@ -108,7 +108,7 @@ export function CommunityStats() {
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-[16px] items-center text-center"
         >
-          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-0.8px] md:tracking-[-2.24px] leading-[1.25] max-w-[366px] md:max-w-[661px]">
+          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] lg:text-[56px] text-[#f6f3ea] tracking-[-0.8px] lg:tracking-[-2.24px] leading-[1.25] max-w-[366px] lg:max-w-[661px]">
             Community’s Most Trusted Onchain Network
           </h2>
           <p

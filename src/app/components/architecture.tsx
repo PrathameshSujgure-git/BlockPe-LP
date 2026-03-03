@@ -279,14 +279,14 @@ const featureBoxes = [
 
 export function Architecture() {
   return (
-    <section className="relative w-full py-[120px]">
+    <section className="relative w-full py-0 lg:py-[120px]">
       {/* Desktop background image */}
       <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-[-40px] h-[807px] w-full max-w-[1200px] pointer-events-none overflow-hidden">
         <img src="/assets/architecture.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
       </div>
 
       {/* Mobile background image */}
-      <div className="lg:hidden absolute left-1/2 -translate-x-1/2 top-[200px] w-[390px] pointer-events-none overflow-hidden">
+      <div className="lg:hidden absolute left-1/2 -translate-x-1/2 top-0 w-[390px] pointer-events-none overflow-hidden">
         <img src="/assets/architecture-mobile.webp" alt="" className="w-full h-auto object-contain" />
       </div>
 
@@ -301,7 +301,7 @@ export function Architecture() {
             transition={{ duration: 0.6 }}
             className="flex flex-col gap-6 items-start max-w-[661px]"
           >
-            <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[36px] md:text-[56px] text-[#f6f3ea] tracking-[-0.72px] lg:tracking-[-2.24px] leading-[1.25]">
+            <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] lg:text-[56px] text-[#f6f3ea] tracking-[-0.8px] lg:tracking-[-2.24px] leading-[1.25]">
               Architecture Behind BlockPe Onchain Execution
             </h2>
             <SecondaryButton>READ DEVELOPER DOCS</SecondaryButton>
@@ -345,7 +345,7 @@ export function Architecture() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full flex flex-col gap-[24px] overflow-x-auto pt-[40px]"
+              className="w-full flex flex-col gap-[24px] overflow-x-auto pt-[88px]"
             >
               {layers.map((layer, i) => (
                 <ArchLayer key={i} {...layer} />
