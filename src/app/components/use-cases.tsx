@@ -712,10 +712,10 @@ function UseCaseCard({ title, description, children, index }: UseCaseCardProps) 
       transition={{ duration: 0.5, delay: index * 0.15 }}
       className="flex-1 min-w-[280px] bg-[#131314] border border-[#232325] overflow-clip relative"
     >
-      <div className="flex flex-col gap-[40px] pt-[24px] pb-[32px] px-[32px]">
+      <div className="flex flex-col gap-[40px] pt-[24px] pb-[24px] px-[16px] lg:pb-[32px] lg:px-[32px]">
         {children}
         <div className="flex flex-col gap-[16px]">
-          <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[28px] md:text-[32px] text-[#f6f3ea] tracking-[-0.64px] leading-[1.25]">
+          <h3 className="font-['PP_Mori',sans-serif] font-semibold text-[28px] md:text-[32px] text-[#f6f3ea] tracking-[-0.56px] leading-[1.25]">
             {title}
           </h3>
           <p className="font-['DM_Sans',sans-serif] font-medium text-[16px] text-[#9b9994] leading-[1.5]">
@@ -729,7 +729,7 @@ function UseCaseCard({ title, description, children, index }: UseCaseCardProps) 
 
 export function UseCases() {
   return (
-    <section id="use-cases" className="py-[120px]">
+    <section id="use-cases" className="py-[80px] lg:py-[120px]">
       <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-[52px] flex flex-col items-center gap-[48px]">
         {/* Title */}
         <motion.div
@@ -737,13 +737,13 @@ export function UseCases() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-[16px] items-center text-center"
+          className="flex flex-col gap-[16px] items-start text-left lg:items-center lg:text-center"
         >
-          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-2.24px] leading-[1.25] max-w-[483px]">
+          <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] md:text-[56px] text-[#f6f3ea] tracking-[-0.8px] md:tracking-[-2.24px] leading-[1.25] lg:max-w-[483px]">
             Proven Use Cases in Production
           </h2>
           <p
-            className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] max-w-[398px]"
+            className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] lg:max-w-[398px]"
             style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
           >
             Powering real applications at scale through gasless production ready financial infrastructure
@@ -751,7 +751,7 @@ export function UseCases() {
         </motion.div>
 
         {/* Cards */}
-        <div className="flex flex-col lg:flex-row gap-[32px] w-full">
+        <div className="flex flex-col lg:flex-row gap-[16px] lg:gap-[32px] w-full">
           <UseCaseCard
             title="AI Driven Trading Systems"
             description="Automated market analysis and autonomous trade execution"
