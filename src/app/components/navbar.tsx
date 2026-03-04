@@ -20,8 +20,7 @@ const SCROLL_THRESHOLD_PERCENT = 0.25;
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "Community", href: "#community" },
-  { label: "$0xGas", href: "#0xgas" },
+  { label: "Infrastructure", href: "#infrastructure" },
   { label: "Use cases", href: "#use-cases" },
 ];
 

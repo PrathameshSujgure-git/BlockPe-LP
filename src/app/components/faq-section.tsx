@@ -51,54 +51,44 @@ function useAccordionSound() {
 
 const faqData = [
   {
-    question: "What is 0xGasless?",
+    question: "What is BlockPe?",
     answer:
-      "0xGasless provides AI infrastructure where you can create AI agents, track progress, and smoothly guide your finance from idea to successful launch. Our platform enables AI agents to interact with blockchain networks without worrying about gas fees through ERC-4337 account abstraction.",
+      "BlockPe is an agent-first payment infrastructure that enables autonomous AI agents to make and receive payments in INR using on-chain rails. Think of it as Razorpay for AI agents.",
   },
   {
-    question: "Is 0xGasless open source?",
+    question: "How is BlockPe different from UPI?",
     answer:
-      "Yes, 0xGasless is open source and community-driven. Developers can contribute by submitting pull requests to add new tools, protocol integrations, or improvements to the existing infrastructure.",
+      "UPI was designed for human-initiated transactions and cannot support the volume and frequency of agent-to-agent payments. BlockPe uses blockchain rails that enable micropayments as small as fractions of a rupee, high-frequency autonomous transactions, and costs that are a fraction of traditional payment infrastructure.",
   },
   {
-    question: "How does 0xGasless work?",
+    question: "What is INR stablecoin?",
     answer:
-      "0xGasless combines AI agent technology with blockchain account abstraction (ERC-4337) to enable gasless transactions. It provides a framework that allows AI agents to execute financial operations autonomously while maintaining security and control through smart account infrastructure.",
+      "An INR stablecoin is a digital currency pegged 1:1 to the Indian Rupee, running on blockchain. It enables instant, low-cost, programmable payments — ideal for autonomous agents that need to transact without human intervention.",
   },
   {
-    question: "What programming languages are supported?",
+    question: "Who is BlockPe built for?",
     answer:
-      "Currently, 0xGasless provides SDKs for: Python TypeScript/JavaScript. Additional language support is planned for future releases.",
+      "BlockPe is built for developers building AI agents, platforms offering usage-based services, Indian businesses selling digital services globally, and enterprises deploying autonomous workflows.",
   },
   {
-    question: "Who can use 0xGasless?",
+    question: "How does cross-border payment work?",
     answer:
-      "0xGasless is designed for: Developers building AI-powered financial applications, Teams implementing autonomous trading systems, Businesses automating financial operations, Anyone looking to integrate AI agents with blockchain capabilities.",
+      "BlockPe handles incoming payments in USDT or other stablecoins, performs on-chain swaps, and routes them to INR stablecoin automatically. Agents only receive a success or failure response — they never deal with FX, bridges, chains, or gas.",
   },
   {
-    question: "How can I contribute to 0xGasless?",
+    question: "Is BlockPe a new product or built on existing infrastructure?",
     answer:
-      "You can contribute by: Submitting pull requests for new features, Adding protocol integrations, Improving documentation, Reporting bugs and suggesting improvements. All contributions go through our review process to ensure security and compatibility.",
+      "BlockPe is built on the battle-tested infrastructure of 0xGasless, which has been live in production for over 12 months processing real transactions globally. BlockPe is the India-first, regulated productization of that proven technology.",
   },
   {
-    question: "What chains does 0xGasless support?",
+    question: "What blockchain does BlockPe run on?",
     answer:
-      "0xGasless supports multiple EVM-compatible chains, including Ethereum, Base, Polygon, and other major networks. Our infrastructure is chain-agnostic and can be extended to support additional networks through our community contribution model.",
+      "BlockPe runs on Avalanche L1 — a custom blockchain with its own consensus model that enables high throughput and low-cost transactions while settling on the Avalanche mainchain.",
   },
   {
-    question: "How does 0xGasless ensure transaction security?",
+    question: "Does BlockPe have a token?",
     answer:
-      "0xGasless implements multiple security layers: Smart account contracts with configurable limits, Multi-signature capabilities, Transaction validation, Whitelist/blacklist controls, Emergency pause functionality.",
-  },
-  {
-    question: "How does the gasless transaction system work?",
-    answer:
-      "0xGasless uses ERC-4337 account abstraction and a paymaster system to handle gas fees. When an AI agent initiates a transaction, our infrastructure bundles it with others, optimizes gas costs, and processes it through our paymaster service, removing the need for the agent to hold native tokens for gas.",
-  },
-  {
-    question: "How do I provide feedback?",
-    answer:
-      "Users can submit feedback through our support portal, allowing us to continuously improve 0xGasless based on user experiences and suggestions.",
+      "No. BlockPe does not have its own token. The infrastructure is focused purely on wallets, payments, settlement, and compliance.",
   },
 ];
 
@@ -223,7 +213,7 @@ export function FAQSection() {
               className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[rgba(246,243,234,0.6)] leading-[1.5] w-[312px]"
               style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
             >
-              Have anything else reach out on our community channels
+              Have more questions? Get in touch with our team
             </p>
           </motion.div>
 

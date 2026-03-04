@@ -98,7 +98,7 @@ function MobileCountStat({ value, label, delay = 0 }: { value: string; label: st
 
 export function CommunityStats() {
   return (
-    <section id="community" className="py-[120px]">
+    <section id="infrastructure" className="py-[120px]">
       <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-[12px] lg:px-0 flex flex-col items-center gap-[84px]">
         {/* Title */}
         <motion.div
@@ -109,13 +109,13 @@ export function CommunityStats() {
           className="flex flex-col gap-[16px] items-center text-center"
         >
           <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] lg:text-[56px] text-[#f6f3ea] tracking-[-0.8px] lg:tracking-[-2.24px] leading-[1.25] max-w-[366px] lg:max-w-[661px]">
-            Community’s Most Trusted Onchain Network
+            Proven Infrastructure Foundation
           </h2>
           <p
             className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] max-w-[372px]"
             style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
           >
-            Degen scoreboard tracking best in class gasless systems and global agent activity
+            Built and battle-tested under 0xGasless — processing real transactions at global scale for over 12 months
           </p>
         </motion.div>
 
@@ -128,16 +128,16 @@ export function CommunityStats() {
 
           {/* Stats at exact Figma positions */}
           <div className="absolute left-[212px] top-[16px] z-10">
-            <AnimatedCountStat value="100+" label="Agents deployed" delay={0} />
+            <AnimatedCountStat value="100+" label="Agents Deployed" delay={0} />
           </div>
           <div className="absolute left-[724px] top-[0px] z-10">
-            <AnimatedCountStat value=">25k" label="Agent Interaction" delay={0.1} />
+            <AnimatedCountStat value=">25k" label="Agent Interactions" delay={0.1} />
           </div>
           <div className="absolute left-[84px] top-[208px] z-10">
-            <AnimatedCountStat value="3.5m+" label="Total value" delay={0.2} />
+            <AnimatedCountStat value="3.5m+" label="Value Processed" delay={0.2} />
           </div>
           <div className="absolute left-[862px] top-[208px] z-10">
-            <AnimatedCountStat value=">10k" label="transactions processed" delay={0.3} />
+            <AnimatedCountStat value=">10k" label="Transactions Settled" delay={0.3} />
           </div>
         </div>
 
@@ -152,13 +152,13 @@ export function CommunityStats() {
           <div className="flex flex-col w-full">
             {/* Row 1 */}
             <div className="flex w-full">
-              <MobileCountStat value="100+" label="Agents deployed" delay={0} />
-              <MobileCountStat value=">25k" label="Agent Interaction" delay={0.1} />
+              <MobileCountStat value="100+" label="Agents Deployed" delay={0} />
+              <MobileCountStat value=">25k" label="Agent Interactions" delay={0.1} />
             </div>
             {/* Row 2 */}
             <div className="flex w-full">
-              <MobileCountStat value="3.5m+" label="Total value" delay={0.2} />
-              <MobileCountStat value=">10k" label="transactions processed" delay={0.3} />
+              <MobileCountStat value="3.5m+" label="Value Processed" delay={0.2} />
+              <MobileCountStat value=">10k" label="Transactions Settled" delay={0.3} />
             </div>
           </div>
         </div>

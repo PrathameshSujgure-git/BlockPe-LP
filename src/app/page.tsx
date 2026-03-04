@@ -4,9 +4,7 @@ import { StatsBar } from "./components/stats-bar";
 import { FeatureCards } from "./components/feature-cards";
 import { CommunityStats } from "./components/community-stats";
 import { Architecture } from "./components/architecture";
-import { TokenSection } from "./components/token-section";
 import { UseCases } from "./components/use-cases";
-import { BlogSection } from "./components/blog-section";
 import { FAQSection } from "./components/faq-section";
 import { FooterCTA } from "./components/footer-cta";
 
@@ -28,9 +26,7 @@ export default function Home() {
           <FeatureCards />
           <CommunityStats />
           <Architecture />
-          <TokenSection />
           <UseCases />
-          <BlogSection />
           <FAQSection />
         </main>
       </div>

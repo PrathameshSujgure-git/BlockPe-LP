@@ -7,7 +7,7 @@ import { Agentation } from "agentation";
 
 const title = "BlockPe — Payment Infrastructure for AI Agents";
 const description =
-  "Gasless, autonomous payment infrastructure that lets AI agents execute onchain transactions. Built on ERC-4337 account abstraction with production-ready SDKs.";
+  "Agent-first payment infrastructure enabling autonomous AI agents to transact in INR using on-chain rails. Built for India's agent economy.";
 
 export const metadata: Metadata = {
   // TODO: Uncomment once domain is finalized

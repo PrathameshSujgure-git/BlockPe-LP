@@ -52,11 +52,11 @@ export function FooterCTA() {
             className="flex flex-col items-start lg:items-center gap-[32px] w-[845px] max-w-full"
           >
             <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[48px] lg:text-[56px] text-[#f6f3ea] tracking-[-1.92px] lg:tracking-[-2.24px] leading-[1.1] text-left lg:text-center w-full">
-              Build Financial Systems for Autonomous Intelligence
+              The Payment Layer for India's Agent Economy
             </h2>
             <div className="flex gap-[16px]">
               <PrimaryButton>Get Started →</PrimaryButton>
-              <SecondaryButton>DEVELOPER DOCS</SecondaryButton>
+              <SecondaryButton>TALK TO US</SecondaryButton>
             </div>
           </motion.div>
         </div>

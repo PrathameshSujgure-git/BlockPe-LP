@@ -20,57 +20,56 @@ interface LayerDef {
 
 const layers: LayerDef[] = [
   {
-    label: "User interface",
+    label: "AI Agents",
     color: "#F6F3EA",
     headerBg: "rgba(255,255,255,0.1)",
-    rows: [["0xGasless API", "Custom Applications"]],
+    rows: [["Developer Agents", "Enterprise Agents", "Consumer Agents"]],
     mobileLayout: "stack",
   },
   {
-    label: "AI intelligence",
+    label: "BlockPe SDK & APIs",
     color: "#CCFFE9",
     headerBg: "rgba(204,255,233,0.1)",
-    rows: [["Function", "Chaining", "Execution"]],
+    rows: [["SDK", "REST APIs", "Webhooks"]],
     mobileLayout: "row",
   },
   {
-    label: "Deployment",
+    label: "Agent Smart Wallets",
     color: "#99FFD4",
     headerBg: "rgba(153,255,212,0.1)",
     rows: [
-      ["Agent Host\n(Cloud Service)", "DevKit\n(CLI Tools)", "Mailbox\n(Message Queue)"],
-      ["PayMaster\n(Gasless) Tx Servie", "NameRegistry\n(AgentDs)"],
+      ["Gasless Wallets", "Spending Limits", "Permissions"],
+      ["Rate Limits", "Domain Allowlists"],
     ],
     mobileLayout: "stack",
   },
   {
-    label: "Agent sdk",
+    label: "On-chain Payments & Routing",
     color: "#66FFBE",
     headerBg: "rgba(102,255,190,0.1)",
     rows: [
-      ["Library Fn.", "Capabilities", "Protocols", "Asynchronous", "Blockchain Tx"],
-      ["Storage", "Dialogs", "Security", "Logic", "Signatures"],
+      ["Payment Execution", "Cross-border Routing", "Stablecoin Swaps", "Liquidity Mgmt", "x402 Standard"],
     ],
     rowGap: "gap-[6px]",
     mobileLayout: "grid-2",
   },
   {
-    label: "Agent network",
+    label: "INR Stablecoin Layer",
     color: "#33FFA9",
     headerBg: "rgba(51,255,169,0.1)",
-    rows: [["Agent Index\n(Endpoint Discovery)", "Name Service\n(Human-readable Addressing)"]],
+    rows: [["INR Stablecoin", "Avalanche L1"]],
     mobileLayout: "stack",
   },
   {
-    label: "Core Foundation",
+    label: "Indian Banking & Settlement",
     color: "#00FF93",
     headerBg: "rgba(0,255,147,0.1)",
     rows: [
       [
-        "Account Abstraction\n(ERC-4337)",
-        "Smart Account\nInfrastructure",
-        "Transaction\nBundling",
-        "Mainchain\nSupport",
+        "Bank Off-ramp",
+        "Merchant Settlement",
+        "Compliance",
+        "Reconciliation",
       ],
     ],
     mobileLayout: "stack",
@@ -249,27 +248,27 @@ function FeatureBox({
 const featureBoxes = [
   {
     icon: Smile,
-    title: "Zero Configuration Interactions",
+    title: "1/10th the Cost of UPI",
     description:
-      "Preconfigured smart accounts, relayers, and paymasters handle execution automatically",
+      "Blockchain rails reduce transaction costs dramatically compared to traditional payment infrastructure",
   },
   {
     icon: Cpu,
-    title: "AI Native Framework Compatibility",
+    title: "Built for Micropayments",
     description:
-      "Agents and models execute onchain actions without custom blockchain logic",
+      "Agents make transactions as small as fractions of a rupee — impossible on traditional rails",
   },
   {
     icon: Lock,
-    title: "Performant & Secure by Default",
+    title: "Regulated & Compliant",
     description:
-      "Low overhead execution with strong security guarantees for all applications",
+      "Built for the Indian ecosystem with regulatory compliance and INR stablecoin settlement",
   },
   {
     icon: GitPullRequest,
-    title: "Extensible and Cross Chain Ready",
+    title: "Why Blockchain, Not UPI",
     description:
-      "Modular components support extensions and multi chain deployment",
+      "UPI cannot handle high-frequency agent transactions at scale — blockchain solves micropayments natively",
   },
 ];
 
@@ -302,7 +301,7 @@ export function Architecture() {
             className="flex flex-col gap-6 items-start max-w-[661px]"
           >
             <h2 className="font-['PP_Mori',sans-serif] font-semibold text-[40px] lg:text-[56px] text-[#f6f3ea] tracking-[-0.8px] lg:tracking-[-2.24px] leading-[1.25]">
-              Architecture Behind BlockPe Onchain Execution
+              Architecture Behind BlockPe
             </h2>
             <SecondaryButton>READ DEVELOPER DOCS</SecondaryButton>
           </motion.div>

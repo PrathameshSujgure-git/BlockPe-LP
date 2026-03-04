@@ -58,9 +58,9 @@ export function Hero() {
             className="font-['DM_Sans',sans-serif] font-medium text-[18px] lg:text-[20px] text-white leading-[1.5]"
             style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.16), 0px 4px 8px rgba(0,0,0,0.6)" }}
           >
-            Micropayments.<br />
-            Per-request.<br />
-            No intermediaries.
+            INR Stablecoin.<br />
+            Agent-native.<br />
+            India-first.
           </motion.div>
 
           <motion.div
@@ -74,7 +74,7 @@ export function Hero() {
                 className="font-['PP_Mori',sans-serif] font-semibold text-[52px] lg:text-[72px] text-[#f6f3ea] tracking-[-1.04px] lg:tracking-[-2.88px] leading-[1.1] max-w-[736px]"
                 style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.4)" }}
               >
-                Payment Infrastructure for AI Agents.
+                Agent-First Payment Infrastructure for India.
               </h1>
             </div>
 
@@ -85,7 +85,7 @@ export function Hero() {
               className="flex flex-wrap gap-4"
             >
               <PrimaryButton>Get Started →</PrimaryButton>
-              <SecondaryButton>DEVELOPER DOCS</SecondaryButton>
+              <SecondaryButton>TALK TO US</SecondaryButton>
             </motion.div>
           </motion.div>
         </div>

@@ -135,21 +135,21 @@ export function StatsBar() {
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
             <CountUp target="99" suffix="%" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
-              Agents Uptime
+              Infrastructure Uptime
             </div>
           </div>
           <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
             <CountUp target="3.5" suffix="m+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
-              Total value
+              Value Processed
             </div>
           </div>
           <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[48px]">
-            <CountUp target="9" suffix="+" />
+            <CountUp target="12" suffix="+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] tracking-[0.28px] uppercase">
-              Protocols integrated
+              Months in Production
             </div>
           </div>
           <div className="w-px self-stretch my-[48px] bg-[rgba(246,243,234,0.1)]" />
@@ -157,25 +157,25 @@ export function StatsBar() {
 
         {/* Stats - Mobile (below lg) */}
         <div className="flex flex-col lg:hidden mb-[48px]">
-          {/* 99% Agents Uptime */}
+          {/* 99% Infrastructure Uptime */}
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border border-[rgba(246,243,234,0.1)]">
             <CountUp target="99" suffix="%" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
-              Agents Uptime
+              Infrastructure Uptime
             </div>
           </div>
-          {/* 9+ Protocols Integrated */}
+          {/* 12+ Months in Production */}
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border-l border-r border-[rgba(246,243,234,0.1)]">
-            <CountUp target="9" suffix="+" />
+            <CountUp target="12" suffix="+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] tracking-[0.28px] uppercase">
-              Protocols integrated
+              Months in Production
             </div>
           </div>
-          {/* 3.5M+ Total Value */}
+          {/* 3.5M+ Value Processed */}
           <div className="flex flex-col gap-[16px] justify-center px-[24px] py-[16px] border border-[rgba(246,243,234,0.1)]">
             <CountUp target="3.5" suffix="m+" />
             <div className="font-['DM_Mono',monospace] font-medium text-[#9b9994] text-[14px] leading-[1.5] uppercase">
-              Total value
+              Value Processed
             </div>
           </div>
         </div>
@@ -208,7 +208,7 @@ export function StatsBar() {
                   className="font-['DM_Mono',monospace] font-medium text-[#00dd7f] text-[12px] uppercase opacity-60 leading-[1.5]"
                   style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
                 >
-                  supported chains
+                  powered by
                 </span>
               </div>
             </div>
