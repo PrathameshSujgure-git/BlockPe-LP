@@ -115,7 +115,7 @@ export function CommunityStats() {
             className="font-['DM_Sans',sans-serif] font-normal text-[16px] text-[#9b9994] leading-[1.5] max-w-[372px]"
             style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.6)" }}
           >
-            Built and battle-tested under 0xGasless — processing real transactions at global scale for over 12 months
+            Built and battle-tested under 0xGasless. Processing real transactions at global scale for over 12 months
           </p>
         </motion.div>
 

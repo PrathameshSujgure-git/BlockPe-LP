@@ -5,9 +5,9 @@ import { Agentation } from "agentation";
 // TODO: Uncomment and update once domain is finalized
 // const siteUrl = "https://blockpe.com";
 
-const title = "BlockPe — Payment Infrastructure for AI Agents";
+const title = "BlockPe - Agent Payment Infrastructure for India";
 const description =
-  "Agent-first payment infrastructure enabling autonomous AI agents to transact in INR using on-chain rails. Built for India's agent economy.";
+  "Agent-native payment infrastructure enabling AI agents to transact in INR on blockchain rails. Wallets, payments, and settlement for India's agent economy.";
 
 export const metadata: Metadata = {
   // TODO: Uncomment once domain is finalized
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BlockPe — Payment Infrastructure for AI Agents",
+        alt: "BlockPe - Agent Payment Infrastructure for India",
       },
     ],
     locale: "en_US",

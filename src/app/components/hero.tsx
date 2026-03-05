@@ -74,7 +74,7 @@ export function Hero() {
                 className="font-['PP_Mori',sans-serif] font-semibold text-[52px] lg:text-[72px] text-[#f6f3ea] tracking-[-1.04px] lg:tracking-[-2.88px] leading-[1.1] max-w-[736px]"
                 style={{ textShadow: "0px 4px 8px rgba(0,0,0,0.4)" }}
               >
-                Agent-First Payment Infrastructure for India.
+                Agent-First Payment Infrastructure for India
               </h1>
             </div>
 

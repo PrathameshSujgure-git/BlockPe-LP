@@ -43,6 +43,9 @@ next-env.d.ts
 # tldr cache
 .tldr/
 
+# local docs (never push to any branch)
+/docs/
+
 # debug screenshots
 *.png
 !public/**/*.png

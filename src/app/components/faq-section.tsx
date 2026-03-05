@@ -63,7 +63,7 @@ const faqData = [
   {
     question: "What is INR stablecoin?",
     answer:
-      "An INR stablecoin is a digital currency pegged 1:1 to the Indian Rupee, running on blockchain. It enables instant, low-cost, programmable payments — ideal for autonomous agents that need to transact without human intervention.",
+      "An INR stablecoin is a digital currency pegged 1:1 to the Indian Rupee, running on blockchain. It enables instant, low-cost, programmable payments, ideal for autonomous agents that need to transact without human intervention.",
   },
   {
     question: "Who is BlockPe built for?",
@@ -73,7 +73,7 @@ const faqData = [
   {
     question: "How does cross-border payment work?",
     answer:
-      "BlockPe handles incoming payments in USDT or other stablecoins, performs on-chain swaps, and routes them to INR stablecoin automatically. Agents only receive a success or failure response — they never deal with FX, bridges, chains, or gas.",
+      "BlockPe handles incoming payments in USDT or other stablecoins, performs on-chain swaps, and routes them to INR stablecoin automatically. Agents only receive a success or failure response. They never deal with FX, bridges, chains, or gas.",
   },
   {
     question: "Is BlockPe a new product or built on existing infrastructure?",
@@ -83,7 +83,7 @@ const faqData = [
   {
     question: "What blockchain does BlockPe run on?",
     answer:
-      "BlockPe runs on Avalanche L1 — a custom blockchain with its own consensus model that enables high throughput and low-cost transactions while settling on the Avalanche mainchain.",
+      "BlockPe runs on Avalanche L1, a custom blockchain with its own consensus model that enables high throughput and low-cost transactions while settling on the Avalanche mainchain.",
   },
   {
     question: "Does BlockPe have a token?",

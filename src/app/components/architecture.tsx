@@ -48,7 +48,7 @@ const layers: LayerDef[] = [
     color: "#66FFBE",
     headerBg: "rgba(102,255,190,0.1)",
     rows: [
-      ["Payment Execution", "Cross-border Routing", "Stablecoin Swaps", "Liquidity Mgmt", "x402 Standard"],
+      ["Payment Execution", "Cross-border Routing", "Stablecoin Swaps", "Liquidity Mgmt"],
     ],
     rowGap: "gap-[6px]",
     mobileLayout: "grid-2",
@@ -256,7 +256,7 @@ const featureBoxes = [
     icon: Cpu,
     title: "Built for Micropayments",
     description:
-      "Agents make transactions as small as fractions of a rupee — impossible on traditional rails",
+      "Agents make transactions as small as fractions of a rupee. Impossible on traditional rails",
   },
   {
     icon: Lock,
@@ -268,7 +268,7 @@ const featureBoxes = [
     icon: GitPullRequest,
     title: "Why Blockchain, Not UPI",
     description:
-      "UPI cannot handle high-frequency agent transactions at scale — blockchain solves micropayments natively",
+      "UPI cannot handle high-frequency agent transactions at scale. Blockchain solves micropayments natively",
   },
 ];
 

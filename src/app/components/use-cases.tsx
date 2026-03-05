@@ -42,10 +42,10 @@ function useAnimationStage(
 
 // ── Content feed data ───────────────────────────────────
 const CONTENT_ITEMS = [
-  { type: "Article", label: "Economic Times — Startup Funding Q3", amount: "₹0.50" },
-  { type: "Video", label: "Product Demo — BlockPe SDK", amount: "₹2.00" },
-  { type: "API", label: "News API — /v2/top-headlines", amount: "₹0.10" },
-  { type: "Article", label: "Mint — RBI Digital Currency Update", amount: "₹0.50" },
+  { type: "Article", label: "Economic Times - Startup Funding Q3", amount: "₹0.50" },
+  { type: "Video", label: "Product Demo - BlockPe SDK", amount: "₹2.00" },
+  { type: "API", label: "News API - /v2/top-headlines", amount: "₹0.10" },
+  { type: "Article", label: "Mint - RBI Digital Currency Update", amount: "₹0.50" },
 ] as const;
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -244,9 +244,9 @@ function APILog() {
 
 // ── Agent cart data ─────────────────────────────────────
 const CART_ITEMS = [
-  { name: "Cloud Compute — 2hr", price: "₹12.00", status: "paid" },
-  { name: "API Access — Premium", price: "₹5.50", status: "paid" },
-  { name: "Data Export — 500MB", price: "₹3.00", status: "pending" },
+  { name: "Cloud Compute - 2hr", price: "₹12.00", status: "paid" },
+  { name: "API Access - Premium", price: "₹5.50", status: "paid" },
+  { name: "Data Export - 500MB", price: "₹3.00", status: "pending" },
 ] as const;
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -438,7 +438,7 @@ export function UseCases() {
         <div className="flex flex-col lg:flex-row gap-[16px] lg:gap-[32px] w-full">
           <UseCaseCard
             title="Content & Media Platforms"
-            description="Agents pay per article, per video, per API call — replacing subscriptions with instant micropayments"
+            description="Agents pay per article, per video, per API call. Replacing subscriptions with instant micropayments"
             index={0}
           >
             <ContentFeed />

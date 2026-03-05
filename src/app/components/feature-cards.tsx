@@ -73,7 +73,7 @@ const features = [
     items: [
       "Each AI agent gets a dedicated smart wallet with configurable spending limits",
       "Rule-based permissions with domain allowlists and rate limits",
-      "Gasless and abstracted — designed for autonomous execution",
+      "Gasless and fully abstracted. Designed for autonomous execution",
     ],
     ctaText: "Learn about Agent Wallets",
     image: "/assets/feature-1.webp",
@@ -84,7 +84,7 @@ const features = [
     title: "Agent-Native Payments in INR",
     items: [
       "Agents pay platforms, other agents, and Indian businesses autonomously",
-      "Near real-time, auditable, and fully programmable — no cards, no UIs",
+      "Near real-time, auditable, and fully programmable. No cards, no UIs",
       "Micropayments down to fractions of a rupee on blockchain rails",
     ],
     ctaText: "Explore Payment Capabilities",
@@ -96,7 +96,7 @@ const features = [
     title: "INR Stablecoin Settlement",
     items: [
       "Cross-border payments auto-swap to INR stablecoin on arrival",
-      "Final settlement in INR — hold stablecoin or off-ramp to bank accounts",
+      "Final settlement in INR. Hold stablecoin or off-ramp to bank accounts",
       "Agents never deal with FX, bridges, chains, or gas",
     ],
     ctaText: "Read about Settlement",

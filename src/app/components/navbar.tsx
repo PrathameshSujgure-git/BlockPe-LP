@@ -106,7 +106,7 @@ export function Navbar() {
           >
             <img
               src="/assets/gasless-logo.svg"
-              alt="0xGasless"
+              alt="BlockPe"
               width={24}
               height={24}
               className="w-[24px] h-[24px]"
@@ -255,13 +255,13 @@ export function Navbar() {
               }
               className="flex flex-col gap-[12px]"
             >
-              {/* Agentkit Repo row */}
+              {/* Developer Docs row */}
               <a
                 href="#"
                 className="flex items-center justify-between pl-[20px] py-[8px] text-white"
               >
                 <span className="font-['DM_Sans',sans-serif] font-medium text-[14px] leading-[1.5]">
-                  Agentkit Repo
+                  Developer Docs
                 </span>
                 <Github size={20} />
               </a>
@@ -336,7 +336,7 @@ export function Navbar() {
             >
               <img
                 src="/assets/gasless-logo.svg"
-                alt="0xGasless"
+                alt="BlockPe"
                 className="transition-all duration-700"
                 style={{
                   width: scrolled ? 22 : 111,
@@ -392,7 +392,7 @@ export function Navbar() {
           >
             <Github size={20} />
             <span className="font-['DM_Sans',sans-serif] font-medium text-[14px] leading-[1.5]">
-              Agentkit Repo
+              Developer Docs
             </span>
           </a>
           <PrimaryButton>{scrolled ? "GET STARTED →" : "Get Started →"}</PrimaryButton>
