@@ -127,7 +127,7 @@ function ContentFeed() {
         ))}
       </div>
       {/* Fade overlay */}
-      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] to-[#131314] to-[58%] pointer-events-none" />
+      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] via-[rgba(19,19,20,0.6)] via-[30%] to-[#131314] to-[50%] pointer-events-none" />
     </div>
   );
 }
@@ -237,7 +237,7 @@ function APILog() {
         )}
       </div>
       {/* Fade overlay */}
-      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] to-[#131314] to-[58%] pointer-events-none" />
+      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] via-[rgba(19,19,20,0.6)] via-[30%] to-[#131314] to-[50%] pointer-events-none" />
     </div>
   );
 }
@@ -372,6 +372,8 @@ function AgentCart() {
           </span>
         </motion.div>
       </div>
+      {/* Fade overlay */}
+      <div className="absolute -bottom-[50px] inset-x-0 h-[113px] bg-gradient-to-b from-[rgba(19,19,20,0)] via-[rgba(19,19,20,0.6)] via-[30%] to-[#131314] to-[50%] pointer-events-none" />
     </div>
   );
 }
