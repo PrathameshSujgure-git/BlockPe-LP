@@ -195,7 +195,7 @@ export function FAQSection() {
   const { playToggle } = useAccordionSound();
 
   return (
-    <section className="py-[80px] lg:py-[120px]">
+    <section className="pt-0 pb-[80px] lg:py-[120px]">
       <div className="max-w-[390px] lg:max-w-[1200px] mx-auto px-4 lg:px-[52px]">
         <div className="flex flex-col lg:flex-row items-start justify-between">
           {/* Left */}

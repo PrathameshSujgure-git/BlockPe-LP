@@ -344,7 +344,7 @@ export function Architecture() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full flex flex-col gap-[24px] overflow-x-auto pt-[88px]"
+              className="w-full flex flex-col gap-[24px] overflow-x-auto pt-[132px]"
             >
               {layers.map((layer, i) => (
                 <ArchLayer key={i} {...layer} />
